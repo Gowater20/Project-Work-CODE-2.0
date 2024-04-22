@@ -11,21 +11,15 @@ Content-Type: application/json
 }
 
 ###
-// add new order by cart
+// create new order by cart
 POST http://localhost:3000/api/orders
 Content-Type: application/json
 
 {
-    "cartId": "6616a9ffca4167fcca78d422"
+    "cartId": "6626cb5eacf5857a748122cb"
 }
 
 // TODO forse si deve togliere
 // delete producut by id
 ###
 DELETE  http://localhost:3000/api/cart/remove/
-
-
-// TODO forse si deve togliere 
-// delete all product by cart 
-###
-DELETE  http://localhost:3000/api/cart/clear

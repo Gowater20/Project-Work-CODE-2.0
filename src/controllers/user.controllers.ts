@@ -71,28 +71,6 @@ export const Logout = async (req: Request, res: Response) => {
     }
 };
 
-// TODO getUserLogged
-/* export const getUserLogged = async (req: Request, res: Response) => {
-    const token = req.headers.authorization;
-    console.log(token);
-    try {
-        // Controlla se le informazioni dell'utente sono state memorizzate nell'oggetto req
-        if (req.user && req.user.id) {
-            const user = await findUserById(req.user.id);
-            console.log("sono nell'user del controller"+user);
-            if (user) {
-                return res.json({ status: true, user: user.surname });
-            } else {
-                return res.json({ status: false });
-            }
-        } else {
-            return res.json({ status: false });
-        }
-    } catch (error) {
-        console.error('Errore durante la gestione della richiesta utente loggato:', error);
-        return res.status(500).json({ status: false, error: 'Errore durante la gestione della richiesta utente loggato' });
-    }
-}; */
 
 export const getUserLogged = async (req: Request, res: Response) => {
     try {

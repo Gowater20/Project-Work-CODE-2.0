@@ -22,6 +22,7 @@ Content-Type: application/json
 // delete producut by id
 ###
 DELETE  http://localhost:3000/api/cart/remove/6616a5ba793ea56aeaf6ddbb
+
 Content-Type: application/json
 
 {
@@ -32,8 +33,3 @@ Content-Type: application/json
 // delete all product by cart
 ###
 DELETE  http://localhost:3000/api/cart/clear
-Content-Type: application/json
-
-{
-    "userId": "66144d3ecd968b084ebe34c5"
-}

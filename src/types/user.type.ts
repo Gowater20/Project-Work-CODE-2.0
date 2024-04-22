@@ -8,4 +8,5 @@ export interface IUser {
     cart?: Schema.Types.ObjectId;
     birthdate: string;
     role: string;
+    loggedIn: Boolean;
 }

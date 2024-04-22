@@ -29,7 +29,11 @@ const userSchema = new mongoose.Schema<IUser>(
             required: false,
             enum: ["admin", "user"],
             default: "user"
-        }
+        },
+        loggedIn: {
+			type: Boolean,
+            default: false
+		},
     },
 
     { timestamps: true }
