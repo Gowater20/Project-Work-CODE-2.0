@@ -8,7 +8,8 @@ import {
 
 // show all product by cart
 export const getCartController = async (req: Request, res: Response) => {
-    const userId = "66144d3ecd968b084ebe34c5"; // TODO recuperare id utente dal JWT token
+    //const userId = "66144d3ecd968b084ebe34c5"; // TODO recuperare id utente dal JWT token
+	const userId = req.body.userId;
 	try {
         const cart = await getCart(userId);
         if (!cart) {
@@ -45,8 +46,10 @@ export const removeProductCartController = async (
 	req: Request,
 	res: Response
 ) => {
+	const userId = req.body.userId;
 	const productId= req.params.id;
-	const userId =  "66144d3ecd968b084ebe34c5" // TODO associa id utente tramite token
+	//const userId =  "66144d3ecd968b084ebe34c5" // TODO associa id utente tramite token
+	
 
 	try {
 		const deletedProduct = await removeProductToCart(userId, productId);
@@ -61,7 +64,9 @@ export const removeProductCartController = async (
 
 // clear cart
 export const clearCartController = async (req: Request, res: Response) => {
-	const userId =  "66144d3ecd968b084ebe34c5" // TODO associa id utente tramite token
+	//const userId =  "66144d3ecd968b084ebe34c5" // TODO associa id utente tramite token
+	const userId = req.body.userId;
+
 	try {
 		await clearCart(userId);
 		res.status(200).json({ message: "cart cleared" });

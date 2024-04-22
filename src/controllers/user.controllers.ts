@@ -5,6 +5,7 @@ import { createSecretToken } from '../utils/user.utils';
 const jwt = require("jsonwebtoken");
 
 import dotenv from 'dotenv'
+//import { idTokenMiddleware } from '../middlewares/user.auth';
 dotenv.config()
 const secretKey = process.env.JWT_SECRET;
 
@@ -39,13 +40,17 @@ export const Login = async (req: Request, res: Response) => {
         console.log("questo è l'id associato alla maillllll: " + userId)
 
         if (userId) {
-            const token = createSecretToken(userId, 1);
-            console.log("token: " + token)
+            const token = createSecretToken({
+                id: user._id,
+                email: user.email,
+                role: user.role
+            }, 1)
             res.cookie("token", token, {
                 httpOnly: false,
                 //TODO aggiungi altri sistemi di sicurezza
                 //TODO aggiungi refresh token 
             });
+            console.log("token login: " + token);
             res
                 .status(201)
                 .json({ message: "User logged", success: true });
@@ -67,22 +72,54 @@ export const Logout = async (req: Request, res: Response) => {
 };
 
 // TODO getUserLogged
-/*     export const getUserLogged = async (req: Request, res: Response) => {
-        const token = req.cookies.token;
-        try{
-            
-        }
-        if (!token) {
+/* export const getUserLogged = async (req: Request, res: Response) => {
+    const token = req.headers.authorization;
+    console.log(token);
+    try {
+        // Controlla se le informazioni dell'utente sono state memorizzate nell'oggetto req
+        if (req.user && req.user.id) {
+            const user = await findUserById(req.user.id);
+            console.log("sono nell'user del controller"+user);
+            if (user) {
+                return res.json({ status: true, user: user.surname });
+            } else {
+                return res.json({ status: false });
+            }
+        } else {
             return res.json({ status: false });
         }
-        jwt.verify(token, secretKey, async (err: any, data: any) => {
+    } catch (error) {
+        console.error('Errore durante la gestione della richiesta utente loggato:', error);
+        return res.status(500).json({ status: false, error: 'Errore durante la gestione della richiesta utente loggato' });
+    }
+}; */
+
+export const getUserLogged = async (req: Request, res: Response) => {
+    try {
+        const token = req.headers.authorization as string;
+        const bearerToken = token.split(" ")[1];
+        console.log("bearerToken già splittato: " + bearerToken)
+        if (!bearerToken) {
+            return res.json({ status: false });
+        }
+        jwt.verify(bearerToken, secretKey, async (err: any, data: any) => {
             if (err) {
                 return res.json({ status: false });
             } else {
+                console.log(data);
                 const user = await findUserById(data.id);
-                if (user) return res.json({ status: true, user: user.surname });
+                if (user) return res.json({
+                    status: true,
+                    _id: user._id,
+                    name: user.name,
+                    surname: user.surname,
+                    email: user.email,
+                    role: user.role
+                });
                 else return res.json({ status: false });
             }
         });
-    }; */
-
+    } catch (err: any) {
+        return res.status(500).json({ error: err.message });
+    }
+};

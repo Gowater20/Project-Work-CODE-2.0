@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Cart from '../models/cart.models';
 import { addCartToOrder, removeCartToOrder, showOrder } from '../services/order.service';
+import { ICart } from '../types/cart.type';
 
 
 // show orders
@@ -19,29 +20,38 @@ export const getOrdersController = async (req: Request, res: Response) => {
 
 //TODO
 // create new order from cart
-/* export const createOrderController = async (req: Request, res: Response) => {
+export const createOrderController = async (req: Request, res: Response) => {
 	//const { name, surname, address, city, region, state, postalCode} = req.body;
-
+	let cart: ICart | null;
 	try {
-		const userCart = "6616a9ffca4167fcca78d422"
+		const cartId = req.body.cartId;
 		//TODO inserisci dati dal token
 		// TODO cerca carrello dall'utente loggato
-		const cart = await Cart.findById(userCart)
+		cart = await Cart.findById(cartId)
 
 		// Verifica se il carrello contiene prodotti
 		if (!cart || cart.products.length === 0) {
 			return res.status(400).json({ success: false, error: 'Cart is empty' });
 		}
-		// Create the new order
+		// Creo dati spedizioni per l'ordine
+		// recuperando i dati della richiesta 
+		// nome, cognome, indirizzo, etc.
 		const shipmentData = req.body;
-		const newOrder = await addCartToOrder(cart, shipmentData );
+
+		//calcolo il totale dell'ordine (somma dei prezzi dei prodotti nel carrello)
+		// il calcolo deve essere effettuato nel carrello e riportato negli ordini
+		//crea nuovo ordine
+		const newOrder = await addCartToOrder(cartId, shipmentData );
+
+		await Cart.findByIdAndDelete(cartId);
+
 
 		res.status(201).json({ success: true, order: newOrder });
 	} catch (error) {
 		console.error("Server not response for create order", error);
 		res.status(500).json({ success: false, error: 'Errore durante la creazione dell\'ordine' });
 	}
-}; */
+};
 
 
 //TODO getOrderById
