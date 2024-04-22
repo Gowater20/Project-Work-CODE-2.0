@@ -1,0 +1,42 @@
+
+GET http://localhost:3000/
+
+###
+// show all product
+GET http://localhost:3000/api/products/
+
+###
+// add new product
+POST http://localhost:3000/api/products/
+Content-Type: application/json
+
+{
+    "name": "belo",
+    "brand": "Dream Brands Inc.",
+    "quantity": 30,
+    "price": 30.99,
+    "sale": 0.2
+}
+
+###
+// get product by id
+GET http://localhost:3000/api/products/66192f9cddac7ce799fee7ab
+
+
+// delete producut by id
+###
+DELETE  http://localhost:3000/api/products/6619284932853454bd30d8ff
+
+
+// updrade product by id 
+###
+PUT http://localhost:3000/api/products/661505b33fdb4d3ae1fc7995
+Content-Type: application/json
+
+{
+    "name": "Fantasy Product To buy",
+    "brand": "Dream Brands Inc.",
+    "quantity": 80,
+    "price": 99.99,
+    "sale": 0.2
+}

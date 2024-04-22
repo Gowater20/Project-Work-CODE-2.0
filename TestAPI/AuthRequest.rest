@@ -1,0 +1,33 @@
+
+GET http://localhost:3000/
+
+
+###
+// register
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "provaUser5343245435",
+    "surname": "cognomeUser4",
+    "email": "provaUser5344353@gmail.com",
+    "password": "test123"
+}
+
+###
+//login 
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "provaUser5343@gmail.com",
+    "password": "test123"
+}
+
+###logout
+GET http://localhost:3000/api/auth/logout
+
+###
+// show user info
+GET http://localhost:3000/api/auth/user
+Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTI4NzE4MDAsImV4cCI6MTcxMjk1ODIwMH0.oNOpnc4fqHv_ZFiQrQ4B97Ube3fjCbngH1P5JqBAcCc"

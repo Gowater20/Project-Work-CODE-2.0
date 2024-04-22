@@ -1,0 +1,24 @@
+
+GET http://localhost:3000/
+
+###
+// show cart 
+GET http://localhost:3000/api/cart
+
+###
+// add new product to cart
+POST http://localhost:3000/api/cart/add/6616a5ba793ea56aeaf6ddbb
+Content-Type: application/json
+
+{
+    "userId": "66144d3ecd968b084ebe34c5"
+}
+
+// delete producut by id
+###
+DELETE  http://localhost:3000/api/cart/remove/6616a5ba793ea56aeaf6ddbb
+
+
+// delete all product by cart
+###
+DELETE  http://localhost:3000/api/cart/clear

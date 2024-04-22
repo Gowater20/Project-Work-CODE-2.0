@@ -1,0 +1,23 @@
+
+GET http://localhost:3000/
+
+###
+// show order 
+GET http://localhost:3000/api/orders
+
+###
+// add new order by cart
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{   
+}
+
+// delete producut by id
+###
+DELETE  http://localhost:3000/api/cart/remove/
+
+
+// delete all product by cart
+###
+DELETE  http://localhost:3000/api/cart/clear
