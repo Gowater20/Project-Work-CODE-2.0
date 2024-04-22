@@ -1,6 +1,6 @@
 {
-  "name": "project-work-code",
-  "version": "1.0.0",
+  "name": "project-work-code-2.0",
+  "version": "2.0.0",
   "description": "Final Project CODE course  ",
   "main": "dist/index.js",
   "scripts": {
@@ -11,12 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/Gowater20/PROGETTO-CODE.git"
   },
-  "author": "Fabio Vallacqua, Dylan La Ferrera, Valeria Ponario Imbrogio",
+  "author": "Fabio Vallacqua",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Gowater20/PROGETTO-CODE/issues"
+    "url": "https://github.com/Gowater20/Project-Work-CODE-2.0/issues"
   },
-  "homepage": "https://github.com/Gowater20/PROGETTO-CODE#readme",
+  "homepage": "https://github.com/Gowater20/Project-Work-CODE-2.0",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "concurrently": "^8.2.2",

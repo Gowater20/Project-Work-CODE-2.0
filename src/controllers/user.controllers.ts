@@ -33,33 +33,40 @@ export const Login = async (req: Request, res: Response) => {
         if (!secretKey) {
             throw new Error('JWT secret key not valid');
         }
+        console.log("questa è la mail trovataaaaaaaaaaaaaaaaaa: " + email)
 
-        const token = createSecretToken(email.id, 1);
-        console.log(res.cookie("token", token, {
-            httpOnly: false,
-            //TODO aggiungi altri sistemi di sicurezza
-            //TODO aggiungi refresh token 
-        }));
-        res
-            .status(201)
-            .json({ message: "User logged", success: true });
-    } catch (err: any) {
-            return res.status(500).json({ error: err.message });
-        }
-    };
+        const userId = user._id?.toString();
+        console.log("questo è l'id associato alla maillllll: " + userId)
 
-    export const Logout = async (req: Request, res: Response) => {
-        try {
-            res.clearCookie("token");
+        if (userId) {
+            const token = createSecretToken(userId, 1);
+            console.log("token: " + token)
+            res.cookie("token", token, {
+                httpOnly: false,
+                //TODO aggiungi altri sistemi di sicurezza
+                //TODO aggiungi refresh token 
+            });
             res
-                .status(200)
-                .json({ message: "User logged out successfully", success: true });
-        } catch (err: any) {
-            return res.status(500).json({ error: err.message });
+                .status(201)
+                .json({ message: "User logged", success: true });
         }
-    };
+    } catch (err: any) {
+        return res.status(500).json({ error: err.message });
+    }
+};
 
-    // TODO getUserLogged
+export const Logout = async (req: Request, res: Response) => {
+    try {
+        res.clearCookie("token");
+        res
+            .status(200)
+            .json({ message: "User logged out successfully", success: true });
+    } catch (err: any) {
+        return res.status(500).json({ error: err.message });
+    }
+};
+
+// TODO getUserLogged
 /*     export const getUserLogged = async (req: Request, res: Response) => {
         const token = req.cookies.token;
         try{
