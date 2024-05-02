@@ -33,3 +33,14 @@ export const matchUser = async (email: string, password: string): Promise<IUser 
 export const findUserById = async (id: string) => {
     return await User.findById(id);
 }
+
+export const updateLoginStatus = async (
+	userId: string,
+	status: boolean,
+): Promise<Partial<IUser | null>> => {
+	return await User.findOneAndUpdate(
+		{ _id: userId },
+		{ loggedIn: status },
+		{ new: true },
+	);
+};

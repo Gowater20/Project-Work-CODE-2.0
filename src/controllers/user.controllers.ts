@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { registerUser, matchUser, findUserById } from '../services/user.service';
+import { registerUser, matchUser, findUserById, updateLoginStatus } from '../services/user.service';
 import { IUser } from '../types/user.type';
 import { createSecretToken } from '../utils/user.utils';
 import { ExtendedRequest } from '../middlewares/user.auth';
 const jwt = require("jsonwebtoken");
 
 import dotenv from 'dotenv'
+import { Logger } from 'concurrently';
 //import { idTokenMiddleware } from '../middlewares/user.auth';
 dotenv.config()
 const secretKey = process.env.JWT_SECRET;
@@ -46,8 +47,9 @@ export const Login = async (req: Request, res: Response) => {
                 email: user.email,
                 role: user.role
             }, 1)
+            updateLoginStatus(userId, true);
             res.cookie("token", token, {
-                httpOnly: false,
+                httpOnly: true,
                 //TODO aggiungi altri sistemi di sicurezza
                 //TODO aggiungi refresh token 
             });
@@ -85,7 +87,8 @@ export const getUserLogged = async (req: ExtendedRequest, res: Response) => {
                 name: user.name,
                 surname: user.surname,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                loggedIn: user.loggedIn
             });
             else return res.json({ status: false });
         }
