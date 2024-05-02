@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { registerUser, matchUser, findUserById } from '../services/user.service';
 import { IUser } from '../types/user.type';
 import { createSecretToken } from '../utils/user.utils';
+import { ExtendedRequest } from '../middlewares/user.auth';
 const jwt = require("jsonwebtoken");
 
 import dotenv from 'dotenv'
@@ -72,31 +73,22 @@ export const Logout = async (req: Request, res: Response) => {
 };
 
 
-export const getUserLogged = async (req: Request, res: Response) => {
+export const getUserLogged = async (req: ExtendedRequest, res: Response) => {
     try {
-        const token = req.headers.authorization as string;
-        const bearerToken = token.split(" ")[1];
-        console.log("bearerToken già splittato: " + bearerToken)
-        if (!bearerToken) {
-            return res.json({ status: false });
+        const userId = req.user?._id;
+        console.log("id utente: " + userId)
+        if (userId) {
+            const user = await findUserById(userId);
+            if (user) return res.json({
+                status: true,
+                _id: user._id,
+                name: user.name,
+                surname: user.surname,
+                email: user.email,
+                role: user.role
+            });
+            else return res.json({ status: false });
         }
-        jwt.verify(bearerToken, secretKey, async (err: any, data: any) => {
-            if (err) {
-                return res.json({ status: false });
-            } else {
-                console.log(data);
-                const user = await findUserById(data.id);
-                if (user) return res.json({
-                    status: true,
-                    _id: user._id,
-                    name: user.name,
-                    surname: user.surname,
-                    email: user.email,
-                    role: user.role
-                });
-                else return res.json({ status: false });
-            }
-        });
     } catch (err: any) {
         return res.status(500).json({ error: err.message });
     }

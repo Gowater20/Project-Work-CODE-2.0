@@ -1,6 +1,7 @@
 import Cart from '../models/cart.models';
 import { ICart } from '../types/cart.type';
 import { Product } from '../models/product.models';
+import { IProduct } from '../types/product.type';
 
 
 export const getCart = async (userId: string): Promise<ICart | null> => {
@@ -39,24 +40,14 @@ export const removeProductToCart = async (
     userId: string,
     productId: string
 ): Promise<ICart | null> => {
-    try {
         let cart = await Cart.findOne({ user: userId });
         if (!cart) {
             throw new Error("Carrello non trovato");
         }
 
-        const product = await Product.findById(productId);
-        if (!product) {
-            throw new Error("Prodotto non trovato");
-        }
-
-        cart.products.pull(product); //TODO risolvi errore da IProduct
+        cart.products.pull(productId); //TODO risolvi errore da IProduct
         await cart.save();
         return cart;
-    } catch (error) {
-        console.error("Errore durante la rimozione del prodotto dal carrello:", error);
-        return null;
-    }
 };
 
 export const clearCart = async (

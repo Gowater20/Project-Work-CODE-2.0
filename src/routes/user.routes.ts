@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Login, Logout, Signup, getUserLogged } from "../controllers/user.controllers";
+import { JWTMiddleware } from "../middlewares/user.auth";
 export const router = Router();
 
 router.post("/register", Signup) //Allows users to register
@@ -7,5 +8,5 @@ router.post("/register", Signup) //Allows users to register
 router.post("/login", Login) //Allows users to log in
 router.get("/logout", Logout) //Allow users to log out
 //TODO
-router.get("/user", getUserLogged) //Returns the information of the currently authenticated user (generic or Admin).
+router.get("/user", JWTMiddleware, getUserLogged) //Returns the information of the currently authenticated user (generic or Admin).
 

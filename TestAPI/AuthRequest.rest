@@ -10,7 +10,7 @@ Content-Type: application/json
 {
     "name": "provaUser5343245435",
     "surname": "cognomeUser4",
-    "email": "provaUser5344353@gmail.com",
+    "email": "provaUse534435323@gmail.com",
     "password": "test123"
 }
 
@@ -30,4 +30,4 @@ GET http://localhost:3000/api/auth/logout
 ###
 // show user info
 GET http://localhost:3000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTY2YzRiMmZjMmEyMGVjYzhmNTEyMCIsImVtYWlsIjoicHJvdmFVc2VyNTM0M0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxMzgxNTIyNywiZXhwIjoxNzEzOTAxNjI3fQ.PxYc_B_xnoVqO9W2dpyyuecEfr9F1IncYr7Op7sWLKI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTY2YzRiMmZjMmEyMGVjYzhmNTEyMCIsImVtYWlsIjoicHJvdmFVc2VyNTM0M0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNDY1Nzc3OCwiZXhwIjoxNzE0NzQ0MTc4fQ.ipS8KxQC5VRdfU43IVskbzn1c4bOPn9_Qv-YliZQ_zU

@@ -43,6 +43,7 @@ export const createOrderController = async (req: Request, res: Response) => {
 		//crea nuovo ordine
 		const newOrder = await addCartToOrder(cartId, shipmentData );
 
+		// elimina il carrello (alternativa sarebbe svuota il carrello in modo da non crearne degli altri ogni volta)
 		await Cart.findByIdAndDelete(cartId);
 
 
