@@ -26,6 +26,7 @@ Content-Type: application/json
 
 ###logout
 GET http://localhost:3000/api/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTY2YzRiMmZjMmEyMGVjYzhmNTEyMCIsImVtYWlsIjoicHJvdmFVc2VyNTM0M0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNDY1Nzc3OCwiZXhwIjoxNzE0NzQ0MTc4fQ.ipS8KxQC5VRdfU43IVskbzn1c4bOPn9_Qv-YliZQ_zU
 
 ###
 // show user info

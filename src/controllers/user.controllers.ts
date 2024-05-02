@@ -63,12 +63,20 @@ export const Login = async (req: Request, res: Response) => {
     }
 };
 
-export const Logout = async (req: Request, res: Response) => {
+export const Logout = async (req: ExtendedRequest, res: Response) => {
     try {
-        res.clearCookie("token");
-        res
-            .status(200)
-            .json({ message: "User logged out successfully", success: true });
+        const userId = req.user?._id;
+        if (userId) {
+            const logStatus = await findUserById(userId)
+            if (logStatus?.loggedIn === false) {
+                return res.status(400).json({ message: 'Already logged out' });
+            }
+            await updateLoginStatus(userId, false);
+            res.clearCookie("token"); //! i cookie sono specifici dell'utente?
+            res
+                .status(200)
+                .json({ message: "User logged out successfully", success: true });
+        }
     } catch (err: any) {
         return res.status(500).json({ error: err.message });
     }
@@ -88,7 +96,7 @@ export const getUserLogged = async (req: ExtendedRequest, res: Response) => {
                 surname: user.surname,
                 email: user.email,
                 role: user.role,
-                loggedIn: user.loggedIn
+                oggedIn: user.loggedIn
             });
             else return res.json({ status: false });
         }
