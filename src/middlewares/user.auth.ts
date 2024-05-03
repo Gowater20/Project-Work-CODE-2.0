@@ -5,26 +5,6 @@ import dotenv from 'dotenv'
 dotenv.config()
 const secretKey = process.env.JWT_SECRET;
 
-/* export const VerifyToken = (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(" ")[1];
-    console.log("token", token);
-    console.log("il segreto è: "+ SECRET);
-
-    if (!token) {
-        return res.status(401).json({ message: "Token not provided" });
-    }
-
-    try {
-        // Verifica e decodifica il token, tira fuori il payload. Tipizzarlo con il Payload corretto
-        const decodedToken: any = jwt.verify(token, SECRET!);
-        return decodedToken;
-        next();
-    } catch (err) {
-        return res.status(401).json({ message: "Invalid token" });
-    }
-}; */
-
-
 
 /* - prendo il jwt dagli headers splittando il bearer e tenendo solo il paypload
 - controllo se c'è il token con (!token) = errore;

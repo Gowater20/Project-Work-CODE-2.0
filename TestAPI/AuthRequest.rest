@@ -8,9 +8,21 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "provaUser5343245435",
-    "surname": "cognomeUser4",
-    "email": "provaUse534435323@gmail.com",
+    "name": "ADMIN",
+    "surname": "CognomeADMIN",
+    "email": "admin@admin.it",
+    "password": "test123"
+}
+
+###
+// admin register
+POST http://localhost:3000/api/auth/admin/register
+Content-Type: application/json
+
+{
+    "name": "ADMIN",
+    "surname": "CognomeADMIN",
+    "email": "admin@admin.it",
     "password": "test123"
 }
 
@@ -20,15 +32,15 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "provaUser5343@gmail.com",
+    "email": "admin@admin.it",
     "password": "test123"
 }
 
 ###logout
 GET http://localhost:3000/api/auth/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTY2YzRiMmZjMmEyMGVjYzhmNTEyMCIsImVtYWlsIjoicHJvdmFVc2VyNTM0M0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNDY1Nzc3OCwiZXhwIjoxNzE0NzQ0MTc4fQ.ipS8KxQC5VRdfU43IVskbzn1c4bOPn9_Qv-YliZQ_zU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzRlMTg0NGU3Y2Y0YjEyMjY5OGUxMyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ3NDE4OTksImV4cCI6MTcxNDgyODI5OX0.YnsIA7Yd6sRn-QiERaz_noaT0y36lrx7ql_CsiGCKA0
 
 ###
 // show user info
 GET http://localhost:3000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTY2YzRiMmZjMmEyMGVjYzhmNTEyMCIsImVtYWlsIjoicHJvdmFVc2VyNTM0M0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNDY1Nzc3OCwiZXhwIjoxNzE0NzQ0MTc4fQ.ipS8KxQC5VRdfU43IVskbzn1c4bOPn9_Qv-YliZQ_zU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzRlMTg0NGU3Y2Y0YjEyMjY5OGUxMyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ3NDE4OTksImV4cCI6MTcxNDgyODI5OX0.YnsIA7Yd6sRn-QiERaz_noaT0y36lrx7ql_CsiGCKA0

@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
-import { registerUser, matchUser, findUserById, updateLoginStatus } from '../services/user.service';
+import { registerUser, matchUser, findUserById, updateLoginStatus, adminRegister } from '../services/user.service';
 import { IUser } from '../types/user.type';
 import { createSecretToken } from '../utils/user.utils';
 import { ExtendedRequest } from '../middlewares/user.auth';
 const jwt = require("jsonwebtoken");
 
 import dotenv from 'dotenv'
-import { Logger } from 'concurrently';
+//import { Logger } from 'concurrently';
 //import { idTokenMiddleware } from '../middlewares/user.auth';
 dotenv.config()
 const secretKey = process.env.JWT_SECRET;
 
-export const Signup = async (req: Request, res: Response) => {
+export const signup = async (req: Request, res: Response) => {
     try {
         const newUser: IUser = req.body;
         const userCreated: IUser = await registerUser(newUser);
@@ -23,7 +23,18 @@ export const Signup = async (req: Request, res: Response) => {
 
 // TODO admin register
 
-export const Login = async (req: Request, res: Response) => {
+export const adminSignup = async(req: Request, res: Response) => {
+    try {
+        const newADMIN: IUser = req.body;
+        const ADMINCreated: IUser = await adminRegister(newADMIN);
+        return res.status(200).json({ ADMINCreated });           
+    } catch (err: any) {
+        return res.status(400).json({ error: err.message });
+    }
+};
+
+
+export const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
         const user = await matchUser(email, password);
@@ -63,14 +74,15 @@ export const Login = async (req: Request, res: Response) => {
     }
 };
 
-export const Logout = async (req: ExtendedRequest, res: Response) => {
+export const logout = async (req: ExtendedRequest, res: Response) => {
     try {
         const userId = req.user?._id;
         if (userId) {
             const logStatus = await findUserById(userId)
             if (logStatus?.loggedIn === false) {
-                return res.status(400).json({ message: 'Already logged out' });
+                return res.status(400).json({ message: 'User already logged out' });
             }
+            // TODO forse dovrei anche invalidare il token?
             await updateLoginStatus(userId, false);
             res.clearCookie("token"); //! i cookie sono specifici dell'utente?
             res
