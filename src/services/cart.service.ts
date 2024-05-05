@@ -14,7 +14,7 @@ export const getOrcreateCart = async (userId: string): Promise<ICart> => {
 }
 
 export const findProductToCart = async (id: string): Promise<ICart | null> => {
-	return await Cart.findById(id);
+	return await Cart.findOne({ products: id });
 };
 export const addProductToCart = async (
     userId: string,
