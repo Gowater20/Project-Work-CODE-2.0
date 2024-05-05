@@ -9,13 +9,13 @@ const secretKey = process.env.JWT_SECRET;
 /* - prendo il jwt dagli headers splittando il bearer e tenendo solo il paypload
 - controllo se c'è il token con (!token) = errore;
  - verifico e decodifico il jwt
- - se c'è il token, assegno le informazioni dell'utente alla richiesta as extend request
+ - se c'è il token, assegno le informazioni dell'utente alla richiesta come extend request
 
  -  */
 
 
 
-// Interface for decoded user information
+// Interface for decoded _id by token 
 export interface ExtendedRequest extends Request {
     user?: { _id: string };
 }

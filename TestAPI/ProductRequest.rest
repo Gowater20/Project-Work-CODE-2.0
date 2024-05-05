@@ -6,15 +6,16 @@ GET http://localhost:3000/
 GET http://localhost:3000/api/products/
 
 ###
-// add new product
+// add new product(admin)
 POST http://localhost:3000/api/products/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
 Content-Type: application/json
 
 {
-    "name": "belo",
-    "brand": "Dream Brands Inc.",
-    "quantity": 30,
-    "price": 30.99,
+    "name": "ProductJWT",
+    "brand": "Fantastic1000",
+    "quantity": 30000,
+    "price": 300.99,
     "sale": 0.2
 }
 
@@ -32,7 +33,7 @@ DELETE  http://localhost:3000/api/products/6627d668897735e19cb6b753
 ###
 PUT http://localhost:3000/api/products/6626c8193ccc454049f373a9
 Content-Type: application/json
-
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
 {
     "name": "Fantasy Product To buy",
     "brand": "Dream Brands Inc.",
