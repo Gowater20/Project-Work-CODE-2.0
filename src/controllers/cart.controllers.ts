@@ -9,7 +9,6 @@ import { ExtendedRequest } from '../middlewares/user.auth';
 
 // show all product by cart
 export const getCartController = async (req: ExtendedRequest, res: Response) => {
-    //const userId = "66144d3ecd968b084ebe34c5"; // TODO recuperare id utente dal JWT token
 	const userId = req.user?._id as string;
 	try {
         const cart = await getCart(userId);
@@ -28,7 +27,7 @@ export const addProductToCartController = async (
 	res: Response
 ) => {
 	const productId = req.params.id;
-	const userId = req.user?._id as string; // TODO recuperare id utente dal JWT token
+	const userId = req.user?._id as string;
 	try {
 		const cart = await addProductToCart(userId, productId);
 		res.status(200).json({ success: true, data: cart });
@@ -43,10 +42,10 @@ export const addProductToCartController = async (
 
 // remove product to cart
 export const removeProductCartController = async (
-	req: Request,
+	req: ExtendedRequest,
 	res: Response
 ) => {
-	const userId = req.body.userId;
+	const userId = req.user?._id as string;
 	const productId= req.params.id;
 	//TODO testalo
 /* 	if(!productId){
@@ -67,13 +66,12 @@ export const removeProductCartController = async (
 };
 
 // clear cart
-export const clearCartController = async (req: Request, res: Response) => {
-	//const userId =  "66144d3ecd968b084ebe34c5" // TODO associa id utente tramite token
-	const userId = req.body.userId;
+export const clearCartController = async (req: ExtendedRequest, res: Response) => {
+	const userId = req.user?._id as string;
 
 	try {
-		await clearCart(userId);
-		res.status(200).json({ message: "cart cleared" });
+		const emptyCart = await clearCart(userId);
+		res.status(200).json({ message: "cart cleared", data: emptyCart });
 	} catch (error) {
 		res.status(500).json({
 			success: false,
