@@ -32,13 +32,16 @@ export const getProductByIdController = async (req: Request, res: Response) => {
 
 export const addProductController = async (req: Request, res: Response) => {
 	try {
-		const newProduct: IProduct = await createProduct(req.body);
+		const newProduct: IProduct | string = await createProduct(req.body);
+		if (typeof newProduct === 'string') {
+            return res.status(400).json({ error: newProduct });
+        }
 		res.status(200).json({
 			message: "product added successfully",
 			newProduct,
 		});
 	} catch (error) {
-		res.status(400).json("Bad Request");
+		res.status(400).json({ error: 'Not all requiredfields were filled out' });
 	}
 };
 

@@ -9,7 +9,9 @@ export const showProduct = async (id: string): Promise<IProduct | null> => {
 	return await Product.findById(id);
 };
 
-export const createProduct = async (product: IProduct): Promise<IProduct> => {
+export const createProduct = async (product: IProduct): Promise<IProduct | string> => {
+	const productExist = await Product.findOne({ name: product.name, brand: product.brand });
+	if(productExist) return (`Product ${product.name} already exists`);
 	return await Product.create(product);
 };
 

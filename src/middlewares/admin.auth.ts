@@ -3,8 +3,9 @@ import { ExtendedRequest } from './user.auth';
 import { findUserById } from '../services/user.service';
 
 export const isAdmin =	async (req: ExtendedRequest, res: Response, next: NextFunction) => {
-		const adminOrUserId = req.user?._id as string; // controlla se serve toString()
-		console.log(adminOrUserId) // recupero l'id dell'admin o dell'utente)
+		const adminOrUserId = req.user?._id as string;
+
+		console.log("id admin or user: " + adminOrUserId) // recupero l'id dell'admin o dell'utente)
 		try {
 			const adminOrUserInDb = await findUserById(adminOrUserId);
 			if (!adminOrUserInDb) {

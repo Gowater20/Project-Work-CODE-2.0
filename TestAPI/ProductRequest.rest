@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "name": "ProductJWT",
-    "brand": "Fantastic1000",
+    "brand": "Fantastic10000",
     "quantity": 30000,
     "price": 300.99,
     "sale": 0.2
