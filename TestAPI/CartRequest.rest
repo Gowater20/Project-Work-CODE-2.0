@@ -4,20 +4,13 @@ GET http://localhost:3000/
 ###
 // show cart 
 GET http://localhost:3000/api/cart
-Content-Type: application/json
-
-{
-    "userId": "66144d3ecd968b084ebe34c5"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MjE2MjYsImV4cCI6MTcxNTAwODAyNn0.2EpYwiO60O6o1r-6H6CiZiFfrwZaSngXvzvsAfcSEjs
 
 ###
 // add new product to cart
 POST http://localhost:3000/api/cart/add/6616a5ba793ea56aeaf6ddbb
-Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MjE2MjYsImV4cCI6MTcxNTAwODAyNn0.2EpYwiO60O6o1r-6H6CiZiFfrwZaSngXvzvsAfcSEjs
 
-{
-    "userId": "66144d3ecd968b084ebe34c5"
-}
 
 // delete producut by id
 ###

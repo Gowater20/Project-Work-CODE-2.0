@@ -5,11 +5,12 @@ import {
 	removeProductToCart,
 	clearCart
 } from '../services/cart.service';
+import { ExtendedRequest } from '../middlewares/user.auth';
 
 // show all product by cart
-export const getCartController = async (req: Request, res: Response) => {
+export const getCartController = async (req: ExtendedRequest, res: Response) => {
     //const userId = "66144d3ecd968b084ebe34c5"; // TODO recuperare id utente dal JWT token
-	const userId = req.body.userId;
+	const userId = req.user?._id as string;
 	try {
         const cart = await getCart(userId);
         if (!cart) {
@@ -23,11 +24,11 @@ export const getCartController = async (req: Request, res: Response) => {
 
 // add product in the cart
 export const addProductToCartController = async (
-	req: Request,
+	req: ExtendedRequest,
 	res: Response
 ) => {
 	const productId = req.params.id;
-	const userId = req.body.userId; // TODO recuperare id utente dal JWT token
+	const userId = req.user?._id as string; // TODO recuperare id utente dal JWT token
 	try {
 		const cart = await addProductToCart(userId, productId);
 		res.status(200).json({ success: true, data: cart });
