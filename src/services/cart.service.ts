@@ -5,49 +5,43 @@ import { IProduct } from '../types/product.type';
 
 
 export const getCart = async (userId: string): Promise<ICart | null> => {
-    try {
-        const cart = await Cart.findOne({ user: userId });
-        return cart;
-    } catch (error) {
-        console.error('Errore durante il recupero del carrello:', error);
-        throw new Error('Errore durante il recupero del carrello');
-    }
+    return await Cart.findOne({ user: userId });
 };
+
+export const getOrcreateCart = async (userId: string): Promise<ICart> => {
+    const cart = await Cart.findOne({ user: userId });
+    return cart || await Cart.create({ user: userId, products: [] });
+}
 
 export const addProductToCart = async (
     userId: string,
-    productId: string
+    product: IProduct
 ): Promise<ICart | null> => {
-    let cart = await Cart.findOne({ user: userId });
-    if (!cart) {
-        cart = await Cart.create({
-            user: userId,
-            products: [],
-        })
-    }
-    const product = await Product.findById(productId);
-    if (!product) {
-        throw new Error("Product not found");
-    }
-
+    let cart = await getOrcreateCart(userId);
     cart.products.push(product);
     await cart.save();
 
     return cart;
 };
+// qui non dovremmo puntare l'id del carrello bensi il carrello dell'utente. capisci meglio la logica
+/* export const updateCart = async (cartData: ICart): Promise<ICart | null> => {
+	const { _id, ...updateData } = cartData; // Escludi il campo _id dal dato da aggiornare
+	return await Cart.findByIdAndUpdate(_id, updateData, { new: true });
+}; */
+
 
 export const removeProductToCart = async (
     userId: string,
     productId: string
 ): Promise<ICart | null> => {
-        let cart = await Cart.findOne({ user: userId });
-        if (!cart) {
-            throw new Error("Carrello non trovato");
-        }
+    let cart = await Cart.findOne({ user: userId });
+    if (!cart) {
+        throw new Error("Carrello non trovato");
+    }
 
-        cart.products.pull(productId); //TODO risolvi errore da IProduct
-        await cart.save();
-        return cart;
+    cart.products.pull(productId); //TODO risolvi errore da IProduct
+    await cart.save();
+    return cart;
 };
 
 export const clearCart = async (
