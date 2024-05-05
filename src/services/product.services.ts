@@ -11,7 +11,7 @@ export const showProduct = async (id: string): Promise<IProduct | null> => {
 
 export const createProduct = async (product: IProduct): Promise<IProduct | string> => {
 	const productExist = await Product.findOne({ name: product.name, brand: product.brand });
-	if(productExist) return (`Product ${product.name} already exists`);
+	if (productExist) return (`Product ${product.name} already exists`);
 	return await Product.create(product);
 };
 
@@ -20,5 +20,7 @@ export const upGrateProduct = async (id: string, updatedProduct: IProduct): Prom
 }
 
 export const deleteProduct = async (id: string): Promise<IProduct | null> => {
+	//const product = await Product.findById(id)
+	//if (!product) { return (`Product ${id} not found`) }
 	return await Product.findByIdAndDelete(id);
 };

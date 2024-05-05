@@ -20,12 +20,12 @@ export const getProductByIdController = async (req: Request, res: Response) => {
 		if (products) {
 			res.status(200).json(products);
 		} else {
-			throw new Error("product not found");
+			throw new Error();
 		}
 	} catch {
 		res.status(404).json({
 			success: false,
-			error: 'Error while getting the product'
+			error: 'Product not found',
 		});
 	}
 };
@@ -34,8 +34,8 @@ export const addProductController = async (req: Request, res: Response) => {
 	try {
 		const newProduct: IProduct | string = await createProduct(req.body);
 		if (typeof newProduct === 'string') {
-            return res.status(400).json({ error: newProduct });
-        }
+			return res.status(400).json({ error: newProduct });
+		}
 		res.status(200).json({
 			message: "product added successfully",
 			newProduct,
@@ -62,10 +62,14 @@ export const updateProductController = async (req: Request, res: Response) => {
 export const deletedProductController = async (req: Request, res: Response) => {
 	try {
 		const product = await deleteProduct(req.params.id);
-		if (!product){
-			return res.status(200).json({ message: "Product deleted" });
-	}
+		if (!product) {
+			return res.status(404).json({ message: "Product not found inside the database" });
+		}
+		return res.status(200).json({ message: "Product deleted" });
 	} catch (errore) {
-		res.status(400).json("Bad request");
+		res.status(404).json({
+			success: false,
+			error: 'Product not found',
+		});
 	}
-	}
+}

@@ -21,15 +21,15 @@ Content-Type: application/json
 
 ###
 // get product by id
-GET http://localhost:3000/api/products/6627d668897735e19cb6b753
+GET http://localhost:3000/api/products/66379a104192077f3558113a
 
 
-// delete producut by id
+// delete producut by id (admin)
 ###
-DELETE  http://localhost:3000/api/products/6627d668897735e19cb6b753
+DELETE  http://localhost:3000/api/products/66379a104192077f3558113a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
 
-
-// updrade product by id 
+// updrade product by id (admin)
 ###
 PUT http://localhost:3000/api/products/6626c8193ccc454049f373a9
 Content-Type: application/json

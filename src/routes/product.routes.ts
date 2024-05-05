@@ -8,7 +8,7 @@ export const router = Router();
 
 router.get("/", getProductsController); // get all products
 router.get("/:id", getProductByIdController); // get product by id
-router.post("/", JWTMiddleware, isAdmin, addProductController); // add product
-router.put("/:id", updateProductController); // update product
-router.delete("/:id", deletedProductController); // delete product
+router.post("/", JWTMiddleware, isAdmin, addProductController); // add product (admin only)
+router.put("/:id", JWTMiddleware, isAdmin, updateProductController); // update product (admin only)
+router.delete("/:id", JWTMiddleware, isAdmin, deletedProductController); // delete product (admin only)
 
