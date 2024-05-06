@@ -22,6 +22,7 @@ Content-Type: application/json
     "postalCode": "20100"
 }
 
+// show order by specific id
 ###
-GET http://localhost:3000/api/orders/6638de23d7a876b31d5cf373
+GET http://localhost:3000/api/orders/6638bfa4a14b5c72b3adfedd
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUwMDMyMDIsImV4cCI6MTcxNTA4OTYwMn0.sCZXAUPdgn-RGSRNE08SBquaMCeI_oXZK6tj8dQQfDw

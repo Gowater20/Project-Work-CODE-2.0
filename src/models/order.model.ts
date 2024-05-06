@@ -4,7 +4,8 @@ import { ICart } from '../types/cart.type';
 const orderSchema = new Schema<IOrder>(
     {
         userId: { type: String, required: true },
-        cart: { type: Schema.Types.ObjectId, ref: 'Cart', required: true }, //! TODO
+        cart: { type: Schema.Types.ObjectId, ref: 'Cart', required: true },
+        status: { type: String, default: "pending" },
         // TODO status: { type: String, default: 'pending' },
         infoData: {
             name: { type: String, required: false },

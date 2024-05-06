@@ -40,7 +40,6 @@ export const getOrdersByUser = async (req: ExtendedRequest, res: Response) => {
 	}
 }
 
-//TODO
 // create new order from user cart
 export const createOrderController = async (req: ExtendedRequest, res: Response) => {
 	const { name, surname, address, city, region, state, postalCode } = req.body;
@@ -96,7 +95,6 @@ export const getOrderByIdController = async (req: ExtendedRequest, res: Response
 		res.status(500).json({ success: false, error: 'Error while getting the order'});
 	}
 };
-
 
 
 //TODO upgradeStateOrder
