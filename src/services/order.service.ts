@@ -9,8 +9,13 @@ export const showOrder = async (userId: string): Promise<IOrder[]> => {
 };
 
 // for one user
-export const findOrderByUserId = async (userId: string): Promise<IOrder[]> => {
+export const findOrdersByUserId = async (userId: string): Promise<IOrder[]> => {
 	return await Order.find({ userId });
+}
+
+// display the order indicated by id
+export const findOrderById = async (id: string): Promise<IOrder | null> => {
+	return await Order.findById(id);
 }
 
 export const addCartToOrder = async (

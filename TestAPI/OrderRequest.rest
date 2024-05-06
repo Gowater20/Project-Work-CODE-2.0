@@ -4,7 +4,7 @@ GET http://localhost:3000/
 ###
 // show all order by specific user 
 GET http://localhost:3000/api/orders
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MjE2MjYsImV4cCI6MTcxNTAwODAyNn0.2EpYwiO60O6o1r-6H6CiZiFfrwZaSngXvzvsAfcSEjs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUwMDMyMDIsImV4cCI6MTcxNTA4OTYwMn0.sCZXAUPdgn-RGSRNE08SBquaMCeI_oXZK6tj8dQQfDw
 
 ###
 // create new order by cart
@@ -22,8 +22,6 @@ Content-Type: application/json
     "postalCode": "20100"
 }
 
-
-// TODO forse si deve togliere
-// delete producut by id
 ###
-DELETE  http://localhost:3000/api/cart/remove/
+GET http://localhost:3000/api/orders/6638de23d7a876b31d5cf373
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUwMDMyMDIsImV4cCI6MTcxNTA4OTYwMn0.sCZXAUPdgn-RGSRNE08SBquaMCeI_oXZK6tj8dQQfDw

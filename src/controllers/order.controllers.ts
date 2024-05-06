@@ -1,12 +1,13 @@
 import { Request, Response } from 'express';
 import Cart from '../models/cart.models';
-import { addCartToOrder, findOrderByUserId, removeCartToOrder, showOrder } from '../services/order.service';
+import { addCartToOrder, findOrderById, findOrdersByUserId, removeCartToOrder, showOrder } from '../services/order.service';
 import { ICart } from '../types/cart.type';
 import { ExtendedRequest } from '../middlewares/user.auth';
 import { getCart } from '../services/cart.service';
 
 
-// show orders by all users
+// TODO Extra: show orders by all users (only admin)
+/* 
 export const getOrdersController = async (req: ExtendedRequest, res: Response) => {
 	const userId = req.user?._id as string;
 	try {
@@ -18,8 +19,10 @@ export const getOrdersController = async (req: ExtendedRequest, res: Response) =
 			error: 'Error while getting orders',
 		});
 	}
-};
+}; */
 
+
+// Displays all orders of a specific user
 export const getOrdersByUser = async (req: ExtendedRequest, res: Response) => {
 	// cerca user id;
 	// cerca ordini specifici dell'user;
@@ -27,7 +30,7 @@ export const getOrdersByUser = async (req: ExtendedRequest, res: Response) => {
 	// restituisci tutti ordini;
 	const userId = req.user?._id as string;
 	try {
-		const orders = await findOrderByUserId(userId);
+		const orders = await findOrdersByUserId(userId);
 		if (!orders) {
 			return res.status(404).json({ success: false, error: 'No orders found' });
 		}
@@ -38,7 +41,7 @@ export const getOrdersByUser = async (req: ExtendedRequest, res: Response) => {
 }
 
 //TODO
-// create new order from cart
+// create new order from user cart
 export const createOrderController = async (req: ExtendedRequest, res: Response) => {
 	const { name, surname, address, city, region, state, postalCode } = req.body;
 	let cart: ICart | null;
@@ -75,22 +78,25 @@ export const createOrderController = async (req: ExtendedRequest, res: Response)
 	}
 };
 
-
-//TODO getOrderById
-/*
-export const getOrderByIdController = async (req: Request, res: Response) => {
+// display the order indicated by id
+export const getOrderByIdController = async (req: ExtendedRequest, res: Response) => {
+	const userId = req.user?._id as string;
+	const orderId = req.params.id;
 	try {
-		const orders = await getOrderByID(req.params.id);
-		if (orders) {
-			res.status(200).json(orders);
-		} else {
-			throw new Error("Order not found");
+		const arrayOrders = await findOrdersByUserId(userId);
+		if (!arrayOrders) {
+			return res.status(404).json({ success: false, error: 'No orders found' });
 		}
+		const order = arrayOrders.find(order => order._id?.toString() === orderId);
+		if (!order) {
+			return res.status(404).json({ success: false, error: 'Order not found' });
+		}
+		res.status(200).json(order);
 	} catch {
 		res.status(500).json({ success: false, error: 'Error while getting the order'});
 	}
 };
-*/
+
 
 
 //TODO upgradeStateOrder
