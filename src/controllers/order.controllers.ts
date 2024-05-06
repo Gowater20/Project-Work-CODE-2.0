@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import Cart from '../models/cart.models';
-import { addCartToOrder, removeCartToOrder, showOrder } from '../services/order.service';
+import { addCartToOrder, findOrderByUserId, removeCartToOrder, showOrder } from '../services/order.service';
 import { ICart } from '../types/cart.type';
 import { ExtendedRequest } from '../middlewares/user.auth';
 import { getCart } from '../services/cart.service';
 
 
-// show orders
+// show orders by all users
 export const getOrdersController = async (req: ExtendedRequest, res: Response) => {
 	const userId = req.user?._id as string;
 	try {
@@ -19,6 +19,23 @@ export const getOrdersController = async (req: ExtendedRequest, res: Response) =
 		});
 	}
 };
+
+export const getOrdersByUser = async (req: ExtendedRequest, res: Response) => {
+	// cerca user id;
+	// cerca ordini specifici dell'user;
+	// se no ordini, return nessun ordine
+	// restituisci tutti ordini;
+	const userId = req.user?._id as string;
+	try {
+		const orders = await findOrderByUserId(userId);
+		if (!orders) {
+			return res.status(404).json({ success: false, error: 'No orders found' });
+		}
+		res.status(200).json({ success: true, data: orders });
+	} catch (error) {
+		res.status(500).json({ success: false, error: 'Server error while getting orders' });
+	}
+}
 
 //TODO
 // create new order from cart

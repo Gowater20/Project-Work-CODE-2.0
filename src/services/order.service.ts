@@ -3,9 +3,15 @@ import { ICart } from '../types/cart.type';
 import { IOrder } from '../types/order.type';
 import { findUserById } from './user.service';
 
+// for all orders //TODO (admin only)
 export const showOrder = async (userId: string): Promise<IOrder[]> => {
 	return await Order.find();
 };
+
+// for one user
+export const findOrderByUserId = async (userId: string): Promise<IOrder[]> => {
+	return await Order.find({ userId });
+}
 
 export const addCartToOrder = async (
 	cartId: string,

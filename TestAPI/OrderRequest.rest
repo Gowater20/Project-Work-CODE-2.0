@@ -2,8 +2,9 @@
 GET http://localhost:3000/
 
 ###
-// show all users order 
+// show all order by specific user 
 GET http://localhost:3000/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MjE2MjYsImV4cCI6MTcxNTAwODAyNn0.2EpYwiO60O6o1r-6H6CiZiFfrwZaSngXvzvsAfcSEjs
 
 ###
 // create new order by cart
