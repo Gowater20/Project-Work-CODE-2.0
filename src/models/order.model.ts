@@ -3,7 +3,8 @@ import { IOrder } from '../types/order.type';
 import { ICart } from '../types/cart.type';
 const orderSchema = new Schema<IOrder>(
     {
-        cart: { type: Schema.Types.ObjectId, ref: 'Cart', required: true },
+        userId: { type: String, required: true },
+        cart: { type: Schema.Types.ObjectId, ref: 'Cart', required: true }, //! TODO
         // TODO status: { type: String, default: 'pending' },
         infoData: {
             name: { type: String, required: false },

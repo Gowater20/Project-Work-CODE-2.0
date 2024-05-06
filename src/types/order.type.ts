@@ -2,9 +2,10 @@ import { Schema } from 'mongoose';
 
 export interface IOrder{
     _id?: string;
+    userId: string; //! TODO;
     cart: Schema.Types.ObjectId;
     //TODO status
-    infoData: {
+    infoData?: {
         name: string,
         surname: string,
         address: string;

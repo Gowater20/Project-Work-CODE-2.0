@@ -1,28 +1,40 @@
 import Order from '../models/order.model';
 import { ICart } from '../types/cart.type';
 import { IOrder } from '../types/order.type';
+import { findUserById } from './user.service';
 
 export const showOrder = async (userId: string): Promise<IOrder[]> => {
-	try {
-		const orders = await Order.find();
-		return orders;
-	} catch (error) {
-		throw new Error('Error while fetching orders');
-	}
+	return await Order.find();
 };
 
 export const addCartToOrder = async (
 	cartId: string,
-	infoData: object
-): Promise<ICart | any> => {
-	try {
-		const order = await Order.create( {cart: cartId} , infoData );
-		return order;
-	} catch (error) {
-		console.error("Order not created", error);
-		return null;
+	userId: string,
+	infoData: {
+		name: string,
+		surname: string,
+		address: string,
+		city: string,
+		region: string,
+		state: string,
+		postalCode: string
 	}
-};
+): Promise<IOrder> => {
+		const order: IOrder = await Order.create({ 
+			cart: cartId, 
+			userId: userId, 
+			infoData: {
+				name: infoData.name,
+				surname: infoData.surname,
+				address: infoData.address,
+				city: infoData.city,
+				region: infoData.region,
+				state: infoData.state,
+				postalCode: infoData.postalCode
+			}
+		});
+		return order;
+	}
 
 // TODO service for GETById
 /*export const getOrderById = async (id: string): Promise<IOrder | null> => {

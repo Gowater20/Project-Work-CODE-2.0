@@ -2,22 +2,25 @@
 GET http://localhost:3000/
 
 ###
-// show order 
+// show all users order 
 GET http://localhost:3000/api/orders
-Content-Type: application/json
-
-{
-    "userId": "66144d3ecd968b084ebe34c5"
-}
 
 ###
 // create new order by cart
 POST http://localhost:3000/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MjE2MjYsImV4cCI6MTcxNTAwODAyNn0.2EpYwiO60O6o1r-6H6CiZiFfrwZaSngXvzvsAfcSEjs
 Content-Type: application/json
 
 {
-    "cartId": "6627dee10c7fee20bc548b75"
+    "name": "Mario",
+    "surname": "Rossi",
+    "address": "Via Roma 123",
+    "city": "Milano",
+    "region": "Lombardia",
+    "state": "Italy",
+    "postalCode": "20100"
 }
+
 
 // TODO forse si deve togliere
 // delete producut by id

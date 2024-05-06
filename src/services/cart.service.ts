@@ -26,15 +26,7 @@ export const addProductToCart = async (
 
     return cart;
 };
-// qui non dovremmo puntare l'id del carrello bensi il carrello dell'utente. capisci meglio la logica
-/* export const updateCart = async (cartData: ICart): Promise<ICart | null> => {
-    const { _id, ...updateData } = cartData; // Escludi il campo _id dal dato da aggiornare
-    return await Cart.findByIdAndUpdate(_id, updateData, { new: true });
-}; */
 
-/* export const findProductToCart = async (
-    userId: string,
-) */
 export const removeProductToCart = async (
     userId: string,
     productId: string
