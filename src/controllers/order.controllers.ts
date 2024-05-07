@@ -99,7 +99,8 @@ export const getOrderByIdController = async (req: ExtendedRequest, res: Response
 
 //TODO upgradeStateOrder
 
-export const removeOrderController = async (req: Request, res: Response) => {
+/* export const removeOrderController = async (req: Request, res: Response) => {
+	// 
 	const orderId = req.params.id;
 	try {
 		await removeCartToOrder(orderId);
@@ -110,4 +111,4 @@ export const removeOrderController = async (req: Request, res: Response) => {
 			error: 'Error while deleting order',
 		});
 	}
-};
+}; */
