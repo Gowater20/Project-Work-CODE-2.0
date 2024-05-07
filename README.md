@@ -2,7 +2,7 @@
 
 **Progetto di realizzazione di un e-commerce in Node.js**
 
-realizzato da: [Fabio Vallacqua](https://github.com/Gowater20), [Valeria Imbrogio Ponaro](https://github.com/IPVale) e [Dylan La Ferrera](https://github.com/Yomir00)
+realizzato da: [Fabio Vallacqua](https://github.com/Gowater20)
 
 ## Tecnologie utilizzate
  - `Javascript ` è stato utilizzato come linguaggio principale per lo sviluppo dell'e-commerce
