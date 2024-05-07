@@ -15,7 +15,7 @@ realizzato da: [Fabio Vallacqua](https://github.com/Gowater20), [Valeria Imbrogi
 La combinazione JavaScript, TypeScript, Express.js e MongoDB offre una soluzione completa;
 consente di avere un'applicazione performante, scalabile e facile da modificare
 
-### Setup Iniziale:
+## Setup Iniziale:
 
 Apri un terminale nella directory del tuo progetto e esegui il seguente comando:
     npm install
@@ -23,7 +23,7 @@ Apri un terminale nella directory del tuo progetto e esegui il seguente comando:
 Questo comando scaricherà e installerà tutte le dipendenze necessarie elencate nel file package.json.
 
 
-### Avvio del Server:
+## Avvio del Server:
 
 Per avviare il server è necessario usare il singolo comando:
 
@@ -31,14 +31,14 @@ Per avviare il server è necessario usare il singolo comando:
 
 Il comando, compila il docie TypeScript e avvia il server utilizzando Nodemon. Nodemon controllerà automaticamente le modifiche nei tuoi file TypeScript e riavvierà il server ogni volta che apporti modifiche, ottimizzando e snellendo lo sviluppo.
 
-### testing dell' API
+## testing dell' API
 
 
 Si prega di installare l'estensione REST Client di visual studio code, o altro IDE,  per inviare le richieste HTTP direttamente dall'editor e visualizzare le risposte in modo chiaro e interattivo. Questa estensione è utile per testare API RESTful e altri servizi HTTP senza dover utilizzare un'applicazione esterna o un browser.
 Il file di teste delle richieste HTTP è nominato:
 
     TestAPI
-    
+
 ## Funzionalita' implementate
 ### UTENTI
 Creazione e registrazione profilo utente
