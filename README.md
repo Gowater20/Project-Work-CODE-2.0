@@ -34,7 +34,7 @@ Il comando, compila il doce TypeScript e avvia il server utilizzando Nodemon. Qu
 
 ## testing dell' API
 
-Per testare le chiamate API, si consiglia di installare l'estensione REST Client di visual studio code, o altro IDE(ambiente di sviluppo integrato),  pin modo da inviare le richieste HTTP direttamente dall'editor e visualizzare le risposte in modo chiaro e interattivo. Questa estensione è utile per testare API RESTful e altri servizi HTTP senza dover utilizzare un'applicazione esterna o un browser.
+Per testare le chiamate API, si consiglia di installare l'estensione REST Client di visual studio code, o altro IDE (ambiente di sviluppo integrato),  in modo da inviare le richieste HTTP direttamente dall'editor e visualizzare le risposte in modo chiaro e interattivo. Questa estensione è utile per testare API RESTful e altri servizi HTTP senza dover utilizzare un'applicazione esterna o un browser.
 Il file di test delle richieste HTTP è nominato:
 
     TestAPI
