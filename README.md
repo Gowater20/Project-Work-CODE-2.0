@@ -18,6 +18,7 @@ consente di avere un'applicazione performante, scalabile e facile da modificare
 ## Setup Iniziale:
 
 Apri un terminale nella directory del tuo progetto e esegui il seguente comando:
+
     npm install
 
 Questo comando scaricherà e installerà tutte le dipendenze necessarie elencate nel file package.json.
