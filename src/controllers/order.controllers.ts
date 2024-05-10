@@ -4,6 +4,7 @@ import { addCartToOrder, findOrderById, findOrdersByUserId, removeCartToOrder, s
 import { ICart } from '../types/cart.type';
 import { ExtendedRequest } from '../middlewares/user.auth';
 import { getCart } from '../services/cart.service';
+import { upgrateOrder } from '../services/order.service';
 
 
 // TODO Extra: show orders by all users (only admin)
@@ -92,13 +93,45 @@ export const getOrderByIdController = async (req: ExtendedRequest, res: Response
 		}
 		res.status(200).json(order);
 	} catch {
-		res.status(500).json({ success: false, error: 'Error while getting the order'});
+		res.status(500).json({ success: false, error: 'Error while getting the order' });
 	}
 };
 
 
 //TODO upgradeStateOrder
-
+export const upgrateStatusOrderController = async (req: ExtendedRequest, res: Response) => {
+	// recupera id ordine tramite params
+	// recupera id utente tramite extended request
+	// recupera modifica by admin with body
+	// identifica ordine tramite id
+	// se non c'è return errore
+	// se c'è aggiorna stato ordine
+	// restituisci ordine aggiornato
+	const orderId = req.params.id;
+	const userId = req.user?._id as string;
+	const { status } = req.body;
+	if (status !== 'pending' &&status !== 'shipped' && status !== 'cancelled') {
+		return res.status(404).json({ success: false, error: 'Incorrect status' });
+	}
+	try {
+		const arrayOrders = await findOrdersByUserId(userId);
+		if (!arrayOrders) {
+			return res.status(404).json({ success: false, error: 'No orders found' });
+		}
+		const order = arrayOrders.find(order => order._id?.toString() === orderId);
+		if (!order) {
+			return res.status(404).json({ success: false, error: 'Order not found' });
+		}
+		console.log("status del re.body: ", status)
+		const updatedOrder = await upgrateOrder(order._id!, status);
+		res.status(200).json({ success: "order status has been changed", data: updatedOrder });
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			error: 'Server error while updating order',
+		});
+	}
+}
 /* export const removeOrderController = async (req: Request, res: Response) => {
 	// 
 	const orderId = req.params.id;

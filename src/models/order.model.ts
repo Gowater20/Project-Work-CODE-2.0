@@ -5,13 +5,12 @@ const orderSchema = new Schema<IOrder>(
     {
         userId: { type: String, required: true },
         cart: { type: Schema.Types.ObjectId, ref: 'Cart', required: true },
-        status: { type: String, default: "pending" },
-        // TODO status: { type: String, default: 'pending' },
+        status: { type: String, enum: ["pending", "shipped", "cancelled"], default: "pending" },
         infoData: {
             name: { type: String, required: false },
             surname: { type: String, required: false },
             address: { type: String, required: false },
-            city: { type: String, required: false},
+            city: { type: String, required: false },
             region: { type: String, required: false },
             state: { type: String, required: false },
             postalCode: { type: String, required: false }

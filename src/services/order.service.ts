@@ -31,21 +31,21 @@ export const addCartToOrder = async (
 		postalCode: string
 	}
 ): Promise<IOrder> => {
-		const order: IOrder = await Order.create({ 
-			cart: cartId, 
-			userId: userId, 
-			infoData: {
-				name: infoData.name,
-				surname: infoData.surname,
-				address: infoData.address,
-				city: infoData.city,
-				region: infoData.region,
-				state: infoData.state,
-				postalCode: infoData.postalCode
-			}
-		});
-		return order;
-	}
+	const order: IOrder = await Order.create({
+		cart: cartId,
+		userId: userId,
+		infoData: {
+			name: infoData.name,
+			surname: infoData.surname,
+			address: infoData.address,
+			city: infoData.city,
+			region: infoData.region,
+			state: infoData.state,
+			postalCode: infoData.postalCode
+		}
+	});
+	return order;
+}
 
 // TODO service for GETById
 /*export const getOrderById = async (id: string): Promise<IOrder | null> => {
@@ -54,6 +54,13 @@ export const addCartToOrder = async (
 */
 
 // TODO service for upgradeStateOrder by id
+
+export const upgrateOrder = async (orderId: string, updatedOrder: IOrder): Promise<IOrder | null> => {
+	return await Order.findOneAndUpdate(
+		{ _id: orderId },
+		{ status: updatedOrder },
+		{ new: true });
+}
 
 export const removeCartToOrder = async (orderId: string): Promise<void> => {
 	try {
