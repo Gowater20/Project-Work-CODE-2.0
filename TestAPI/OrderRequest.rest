@@ -24,20 +24,20 @@ Content-Type: application/json
 
 // show order by specific id
 ###
-GET http://localhost:3000/api/orders/6638bfa4a14b5c72b3adfedd
+GET http://localhost:3000/api/orders/663e4af1aac787c4026c1d65
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTE4NDMsImV4cCI6MTcxNTQzODI0M30.Io4b8jsnhD40UVYp2iGStfpsVuU0JN0q3uQ5FRAQykA
 
 // update status order by id (only ADMIN)
 ###
-PUT http://localhost:3000/api/orders/6638bfa4a14b5c72b3adfedd
+PUT http://localhost:3000/api/orders/663e4af1aac787c4026c1d65
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTE4NDMsImV4cCI6MTcxNTQzODI0M30.Io4b8jsnhD40UVYp2iGStfpsVuU0JN0q3uQ5FRAQykA
 Content-Type: application/json
 
 {
-    "status": "shipped"
+    "status": "cancelled"
 }
 
 // delete order by id (only ADMIN)
 ###
-DELETE http://localhost:3000/api/orders/6638bfa4a14b5c72b3adfedd
+DELETE http://localhost:3000/api/orders/663e4af1aac787c4026c1d65
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTE4NDMsImV4cCI6MTcxNTQzODI0M30.Io4b8jsnhD40UVYp2iGStfpsVuU0JN0q3uQ5FRAQykA

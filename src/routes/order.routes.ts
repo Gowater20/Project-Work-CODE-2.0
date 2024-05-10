@@ -3,7 +3,8 @@ import {
 	createOrderController,
 	getOrdersByUser,
 	getOrderByIdController,
-	upgrateStatusOrderController
+	upgrateStatusOrderController,
+	removeOrderController
 } from '../controllers/order.controllers';
 import { JWTMiddleware } from '../middlewares/user.auth';
 import { isAdmin } from '../middlewares/admin.auth';
@@ -14,4 +15,4 @@ router.get('/', JWTMiddleware, getOrdersByUser); // restituiscre tutti gli ordin
 router.post('/', JWTMiddleware, createOrderController); // crea nuovo ordine dai prodotti presenti nel carrello
 router.get('/:id', JWTMiddleware, getOrderByIdController); // restituisce ordine dall'id order
 router.put('/:id', JWTMiddleware, isAdmin, upgrateStatusOrderController); // aggiorna stato ordine (ADMIN) 
-// TODO router.delete('/:id', removeOrderController); // cancella stato ordine (ADMIN) solo se in stato cancelled
+router.delete('/:id',JWTMiddleware, isAdmin, removeOrderController); // cancella stato ordine (ADMIN) solo se in stato cancelled

@@ -47,14 +47,7 @@ export const addCartToOrder = async (
 	return order;
 }
 
-// TODO service for GETById
-/*export const getOrderById = async (id: string): Promise<IOrder | null> => {
-	return await Order.findById(id);
-};
-*/
-
-// TODO service for upgradeStateOrder by id
-
+// update status order by id (only admin)
 export const upgrateOrder = async (orderId: string, updatedOrder: IOrder): Promise<IOrder | null> => {
 	return await Order.findOneAndUpdate(
 		{ _id: orderId },
@@ -62,11 +55,8 @@ export const upgrateOrder = async (orderId: string, updatedOrder: IOrder): Promi
 		{ new: true });
 }
 
-export const removeCartToOrder = async (orderId: string): Promise<void> => {
-	try {
-		await Order.findByIdAndDelete(orderId);
-	} catch (error) {
-		throw new Error('Error while removing order');
-	}
-};
+//delete order by id (only admin)
+export const deleteOrder = async (orderId: string): Promise<void> => {
+	await Order.findByIdAndDelete(orderId);
+}
 

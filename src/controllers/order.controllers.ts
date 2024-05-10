@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Cart from '../models/cart.models';
-import { addCartToOrder, findOrderById, findOrdersByUserId, removeCartToOrder, showOrder } from '../services/order.service';
+import { addCartToOrder, deleteOrder,  findOrdersByUserId } from '../services/order.service';
 import { ICart } from '../types/cart.type';
 import { ExtendedRequest } from '../middlewares/user.auth';
 import { getCart } from '../services/cart.service';
@@ -84,7 +84,7 @@ export const getOrderByIdController = async (req: ExtendedRequest, res: Response
 	const orderId = req.params.id;
 	try {
 		const arrayOrders = await findOrdersByUserId(userId);
-		if (!arrayOrders) {
+		if (arrayOrders.length < 1) {
 			return res.status(404).json({ success: false, error: 'No orders found' });
 		}
 		const order = arrayOrders.find(order => order._id?.toString() === orderId);
@@ -97,8 +97,7 @@ export const getOrderByIdController = async (req: ExtendedRequest, res: Response
 	}
 };
 
-
-//TODO upgradeStateOrder
+// upgrate status order by id (only admin)
 export const upgrateStatusOrderController = async (req: ExtendedRequest, res: Response) => {
 	// recupera id ordine tramite params
 	// recupera id utente tramite extended request
@@ -115,14 +114,13 @@ export const upgrateStatusOrderController = async (req: ExtendedRequest, res: Re
 	}
 	try {
 		const arrayOrders = await findOrdersByUserId(userId);
-		if (!arrayOrders) {
+		if (arrayOrders.length < 1) {
 			return res.status(404).json({ success: false, error: 'No orders found' });
 		}
 		const order = arrayOrders.find(order => order._id?.toString() === orderId);
 		if (!order) {
 			return res.status(404).json({ success: false, error: 'Order not found' });
 		}
-		console.log("status del re.body: ", status)
 		const updatedOrder = await upgrateOrder(order._id!, status);
 		res.status(200).json({ success: "order status has been changed", data: updatedOrder });
 	} catch (error) {
@@ -132,16 +130,36 @@ export const upgrateStatusOrderController = async (req: ExtendedRequest, res: Re
 		});
 	}
 }
-/* export const removeOrderController = async (req: Request, res: Response) => {
-	// 
+// delete order by id (only admin)
+export const removeOrderController = async (req: ExtendedRequest, res: Response) => {
+	// resupera id ordine tramite params
+	// recupera id utente tramite extended request
+	// controlla se esiste l'ordine tramite id
+	// se no restituisci ordine non trovato
+	// controlla se lo status dell'ordine è cancelled
+	// se no restituisci errore, l'ordine non ha lo status cancelled
+	// se si cancella l'ordine
 	const orderId = req.params.id;
+	const userId = req.user?._id as string;
 	try {
-		await removeCartToOrder(orderId);
-		res.status(200).json({ success: true });
+		const arrayOrders = await findOrdersByUserId(userId);
+		if (arrayOrders.length < 1) {
+			return res.status(404).json({ success: false, error: 'No orders found' });
+		}
+		const order = arrayOrders.find(order => order._id?.toString() === orderId);
+		if (!order) {
+			return res.status(404).json({ success: false, error: 'Order not found' });
+		}
+		if (order.status !== 'cancelled') {
+			res.status(404).json({ success: false, error: 'Order not cancelled because the status is not cancelled' });
+		}
+		await deleteOrder(order._id!);
+		res.status(200).json({ success: `Order: ${orderId} has been deleted`});
+		
 	} catch (error) {
 		res.status(500).json({
 			success: false,
-			error: 'Error while deleting order',
+			error: 'Server error while deleting order',
 		});
 	}
-}; */
+};
