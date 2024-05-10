@@ -1,4 +1,4 @@
-import { createProduct, deleteProduct, showAllProducts, showProduct, upGrateProduct, } from "../services/product.services";
+import { createProduct, deleteProduct, showAllProducts, showProduct, upGrateProduct, findProductByName } from "../services/product.services";
 import { IProduct } from "../types/product.type";
 import { Request, Response } from "express";
 
@@ -24,11 +24,13 @@ export const getProductsController = async (req: Request, res: Response) => {
 export const getProductByIdController = async (req: Request, res: Response) => {
 	try {
 		const products = await showProduct(req.params.id);
-		if (products) {
-			res.status(200).json(products);
-		} else {
-			throw new Error();
+		if (!products) {
+			return res.status(404).json({
+				success: false,
+				error: 'No product found',
+			});
 		}
+		res.status(200).json(products);
 	} catch {
 		res.status(500).json({
 			success: false,
@@ -38,17 +40,19 @@ export const getProductByIdController = async (req: Request, res: Response) => {
 };
 
 export const addProductController = async (req: Request, res: Response) => {
+	const product = req.body;
 	try {
-		const newProduct: IProduct | string = await createProduct(req.body);
-		if (typeof newProduct === 'string') {
-			return res.status(400).json({ error: newProduct });
+		const newProduct = await findProductByName(product);
+		if (newProduct) {
+			return res.status(404).json({ message: "Product already exists in the database" });
 		}
+		const createdProduct = await createProduct(product);
 		res.status(200).json({
 			message: "product added successfully",
-			newProduct,
+			createdProduct
 		});
 	} catch (error) {
-		res.status(400).json({ error: 'Not all requiredfields were filled out' });
+		res.status(500).json({ error: 'Server error while adding product' });
 	}
 };
 

@@ -1,17 +1,23 @@
 import { IProduct } from "../types/product.type";
 import { Product } from "../models/product.models";
 
+// trova tutti i prodotti dell'ecommerce
 export const showAllProducts = async (): Promise<IProduct[]> => {
 	return await Product.find();
 };
 
+//trova prodotto tramite id
 export const showProduct = async (id: string): Promise<IProduct | null> => {
 	return await Product.findById(id);
 };
 
-export const createProduct = async (product: IProduct): Promise<IProduct | string> => {
-	const productExist = await Product.findOne({ name: product.name, brand: product.brand });
-	if (productExist) return (`Product ${product.name} already exists`);
+//trova prodotto tramite name e brand
+export const findProductByName = async (product: IProduct): Promise<IProduct | null> => {
+	return await Product.findOne({ name: product.name, brand: product.brand })
+}
+
+//crea un nuovo prodotto nel database
+export const createProduct = async (product: IProduct): Promise<IProduct> => {
 	return await Product.create(product);
 };
 
