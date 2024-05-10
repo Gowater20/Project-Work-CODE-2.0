@@ -9,8 +9,11 @@ export const getCart = async (userId: string): Promise<ICart | null> => {
 };
 
 export const getOrcreateCart = async (userId: string): Promise<ICart> => {
-    const cart = await Cart.findOne({ user: userId });
-    return cart || await Cart.create({ user: userId, products: [] });
+    let cart = await Cart.findOne({ user: userId });
+    if(!cart){
+        cart = await Cart.create({ user: userId, products: [] });
+    }
+    return cart
 }
 
 export const findProductToCart = async (id: string): Promise<ICart | null> => {

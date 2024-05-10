@@ -8,16 +8,17 @@ GET http://localhost:3000/api/products/
 ###
 // add new product(admin)
 POST http://localhost:3000/api/products/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNjA5MzQsImV4cCI6MTcxNTQ0NzMzNH0.YpdZwY_3Xs2PYHeKiIFMEiI1-GZQ1ngYuaMry02t0yg
 Content-Type: application/json
 
 {
-    "name": "ProductJWT",
-    "brand": "Fantastic10000",
-    "quantity": 30000,
-    "price": 300.99,
+    "name": "Smartphone",
+    "brand": "ABC Electronics",
+    "quantity": 100,
+    "price": 599.99,
     "sale": 0.2
 }
+
 
 ###
 // get product by id
@@ -26,13 +27,13 @@ GET http://localhost:3000/api/products/66379b4feff2fe55298706f1
 
 // delete producut by id (admin)
 ###
-DELETE  http://localhost:3000/api/products/66379ab96637007cfe7c82bb
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
+DELETE  http://localhost:3000/api/products/663e54b97f30e5ddf566a115
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNjA5MzQsImV4cCI6MTcxNTQ0NzMzNH0.YpdZwY_3Xs2PYHeKiIFMEiI1-GZQ1ngYuaMry02t0yg
 
 // updrade product by id (admin)
 ###
-PUT http://localhost:3000/api/products/66379b4feff2fe55298706f1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
+PUT http://localhost:3000/api/products/663e54b97f30e5ddf566a115
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNjA5MzQsImV4cCI6MTcxNTQ0NzMzNH0.YpdZwY_3Xs2PYHeKiIFMEiI1-GZQ1ngYuaMry02t0yg
 Content-Type: application/json
 
 {

@@ -92,6 +92,10 @@ export const clearCartController = async (req: ExtendedRequest, res: Response) =
 	const userId = req.user?._id as string;
 
 	try {
+		const cart = await getOrcreateCart(userId);
+		if(cart.products.length === 0) {
+			res.status(404).json({ message: 'Cart is empty' });
+		}
 		const emptyCart = await clearCart(userId);
 		res.status(200).json({ message: "cart cleared", data: emptyCart });
 	} catch (error) {

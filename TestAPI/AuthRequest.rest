@@ -8,9 +8,9 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "ADMIN",
-    "surname": "CognomeADMIN",
-    "email": "admin@admin.it",
+    "name": "Fabio",
+    "surname": "Rossi",
+    "email": "fabio.rossi@gmail.it",
     "password": "test123"
 }
 
@@ -38,9 +38,9 @@ Content-Type: application/json
 
 ###logout
 GET http://localhost:3000/api/auth/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzRlMTg0NGU3Y2Y0YjEyMjY5OGUxMyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ3NDE4OTksImV4cCI6MTcxNDgyODI5OX0.YnsIA7Yd6sRn-QiERaz_noaT0y36lrx7ql_CsiGCKA0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTkzNjgsImV4cCI6MTcxNTQ0NTc2OH0.bIj2bgTzDKuuCBKR4GhQWtblZKccaV0gcDMi6gZ_vDs
 
 ###
 // show user info
 GET http://localhost:3000/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTQ5MTA5OTQsImV4cCI6MTcxNDk5NzM5NH0.2zYUXr8xzn4oDwzbY2A2aRaCqlEezOjjcyiYasx-si4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZjJiMzVhMzlhODE2YTYzNjA5YiIsImVtYWlsIjoiZmFiaW8ucm9zc2lAZ21haWwuaXQiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTM1OTYyNSwiZXhwIjoxNzE1NDQ2MDI1fQ.CEUcjz4pny6EgN9VqGm2dCtf5eXWvxt230ymI0pddEM

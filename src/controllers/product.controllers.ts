@@ -49,9 +49,12 @@ export const updateProductController = async (req: Request, res: Response) => {
 	try {
 		let updatedProduct: IProduct = req.body;
 		const product = await upGrateProduct(req.params.id, updatedProduct);
+		if (!product) {
+			return res.status(404).json({ message: "Product not found in the database" });
+		}
 		res.status(200).json({ message: "Product successfully modified", product });
 	} catch (error) {
-		res.status(404).json({ message: "Product not found in database" });
+		res.status(500).json({ message: "Server error while updating product" });
 	}
 };
 
