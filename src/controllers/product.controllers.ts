@@ -5,14 +5,21 @@ import { Request, Response } from "express";
 export const getProductsController = async (req: Request, res: Response) => {
 	try {
 		const products = await showAllProducts();
+		if (!products || products.length === 0) {
+			return res.status(404).json({
+				success: false,
+				error: 'No products found',
+			});
+		}
 		res.status(200).json(products);
 	} catch (error) {
 		res.status(500).json({
 			success: false,
-			error: 'Error while getting products',
+			error: 'Server error while getting products',
 		});
 	}
-};
+}
+
 
 export const getProductByIdController = async (req: Request, res: Response) => {
 	try {
@@ -23,9 +30,9 @@ export const getProductByIdController = async (req: Request, res: Response) => {
 			throw new Error();
 		}
 	} catch {
-		res.status(404).json({
+		res.status(500).json({
 			success: false,
-			error: 'Product not found',
+			error: 'Server error while getting product',
 		});
 	}
 };
