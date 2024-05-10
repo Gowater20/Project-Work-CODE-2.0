@@ -77,9 +77,9 @@ export const deletedProductController = async (req: Request, res: Response) => {
 		}
 		return res.status(200).json({ message: "Product deleted" });
 	} catch (errore) {
-		res.status(404).json({
+		res.status(500).json({
 			success: false,
-			error: 'Product not found',
+			error: 'Server error while deleting product'
 		});
 	}
 }

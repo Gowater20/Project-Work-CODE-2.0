@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ###
 // get product by id
-GET http://localhost:3000/api/products/66379b4feff2fe55298706f1
+GET http://localhost:3000/api/products/addProductController
 
 
 // delete producut by id (admin)
