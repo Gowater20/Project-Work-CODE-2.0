@@ -2,7 +2,7 @@
 
 **E-commerce Development Project in Node.js**
 
-## Tecnologie utilizzate
+## Used technologies
 - `Javascript` was used as the primary language for e-commerce development.
 - `Typescript` offers better code maintainability by implementing static typing, allowing type errors to be caught.
 - `Express.js` is a web framework for Node.js that simplifies web application and API development through its routing system, middleware, and error handling.
