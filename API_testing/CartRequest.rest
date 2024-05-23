@@ -13,7 +13,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmM
 Content-Type: application/json
 
 {
-
+    "quantity": 2
 }
 
 // delete producut by id

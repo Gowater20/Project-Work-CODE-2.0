@@ -1,10 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IOrder } from '../types/order.type';
 import { ICart } from '../types/cart.type';
+import { cartSchema } from './cart.models';
 const orderSchema = new Schema<IOrder>(
     {
         userId: { type: String, required: true },
-        cart: { type: Schema.Types.ObjectId, ref: 'Cart', required: true },
+        cart: { type: cartSchema, ref: 'Cart', required: true },
         status: { type: String, enum: ["pending", "shipped", "cancelled"], default: "pending" },
         infoData: {
             name: { type: String, required: false },

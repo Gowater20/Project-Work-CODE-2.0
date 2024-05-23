@@ -19,7 +19,7 @@ export const findOrderById = async (id: string): Promise<IOrder | null> => {
 }
 
 export const addCartToOrder = async (
-	cartId: string,
+	cartObj: object,
 	userId: string,
 	infoData: {
 		name: string,
@@ -32,7 +32,7 @@ export const addCartToOrder = async (
 	}
 ): Promise<IOrder> => {
 	const order: IOrder = await Order.create({
-		cart: cartId,
+		cart: cartObj,
 		userId: userId,
 		infoData: {
 			name: infoData.name,
