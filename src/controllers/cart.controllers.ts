@@ -31,23 +31,16 @@ export const addProductToCartController = async (
 ) => {
 	const productId = req.params.id;
 	const userId = req.user?._id as string;
-	const quantity = req.body.quantity; // recupero la quantità dal body
+	let quantity = req.body.quantity; // recupero la quantità dal body
 	try {
-		if (productId.length !== 24) {
-			return res.status(404).json({
-				message: "Product id is not valid",
-			});
-		}
 		const productDb = await showProduct(productId);
 		if (!productDb) {
 			return res.status(404).json({
 				message: "Product id not found in the database",
 			});
 		}
-		if(quantity < 1) {
-			return res.status(404).json({
-				message: "Quantity is not valid",
-			});
+		if(quantity === undefined) {
+			quantity = 1;
 		}
 // TODO controllo quantità dallo stock
 // TODO riduci quantità dallo stock se l'ordine viene venduto
@@ -77,11 +70,6 @@ export const removeProductCartController = async (
 			return res.status(404).json({ success: false, error: 'User cart not found' });
 		}
 		console.log("cartId: " + cart._id)
-		if (productId.length !== 24) {
-			return res.status(404).json({
-				message: "Product id is not valid",
-			})
-		}
 		const productInCart = await findProductToCart(cart, productId);
 		console.log("product in lineCart: " + productInCart)
 		if (!productInCart) {

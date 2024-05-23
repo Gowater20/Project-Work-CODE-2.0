@@ -12,8 +12,9 @@ export const getCart = async (userId: string): Promise<ICart | null> => {
 export const getOrcreateCart = async (userId: string): Promise<ICart> => {
     let cart = await Cart.findOne({ user: userId });
     if (!cart) {
-        cart = await Cart.create({ user: userId, products: [] });
+        cart = await Cart.create({ user: userId });
     }
+
     return cart
 }
 
@@ -34,17 +35,20 @@ export const addProductToCart = async (
     productQuantity: number
 ): Promise<ICart | null> => {
     let cart = await getOrcreateCart(userId);
-    const populatedProduct = await Product.findById(product._id);
-    if (!populatedProduct) {
-        console.error(`Prodotto non trovato con ID ${product._id}`);
-        return null;
+    const productExist = cart.lineCart.find(item => item.productId == product._id);
+    console.log("productExist: " + productExist)
+    if(productExist) {
+        productExist.quantity = productExist.quantity.valueOf() + productQuantity;
+        productExist.subtotal = productExist.quantity.valueOf() * productExist.price.valueOf();
+    } else{
+        const populatedProduct = await Product.findById(product._id);
+        cart.lineCart.push({
+            productId: populatedProduct!._id,
+            quantity: productQuantity,
+            price: populatedProduct!.price,
+            subtotal: productQuantity * populatedProduct!.price
+        });
     }
-    cart.lineCart.push({
-        productId: populatedProduct._id,
-        quantity: productQuantity,
-        price: populatedProduct.price,
-        subtotal: productQuantity * populatedProduct.price
-    });
     cart.totalPrice = cart.lineCart.reduce((total, item) => total + item.subtotal.valueOf(), 0);
     await cart.save();
     return cart;

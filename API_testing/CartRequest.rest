@@ -4,16 +4,16 @@ GET http://localhost:3000/
 ###
 // show cart 
 GET http://localhost:3000/api/cart
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTYyMjYwNjEsImV4cCI6MTcxNjMxMjQ2MX0.BGmiWOhAyj2P4fsNPJlh8GtNfB3uKxVKHziYUBNwrE8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTY0NzEzODksImV4cCI6MTcxNjU1Nzc4OX0.GKkeb0hYV6bxucC15FkuoR0EtU2YqqggOBC0A1e89QE
 
 ###
 // add new product to cart
-POST http://localhost:3000/api/cart/add/663e66919727a6d7f9afe507
+POST http://localhost:3000/api/cart/add/663e66a3523a3214a30efc12
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTY0NzEzODksImV4cCI6MTcxNjU1Nzc4OX0.GKkeb0hYV6bxucC15FkuoR0EtU2YqqggOBC0A1e89QE
 Content-Type: application/json
 
 {
-    "quantity": 2
+
 }
 
 // delete producut by id
