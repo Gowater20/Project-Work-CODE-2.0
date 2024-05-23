@@ -38,7 +38,7 @@ Nodemon will automatically monitor TypeScript file changes and restart the serve
 To test API calls, it is recommended to install the REST Client extension for Visual Studio Code or another IDE, allowing you to send HTTP requests directly from the editor and view the responses clearly and interactively. This extension is useful for testing RESTful APIs and other HTTP services without needing an external application or browser.
 The test file for HTTP requests is named:
 
-    TestAPI // write API's test
+    API_testing
 
 ## Implemented Features
 ### USERS
