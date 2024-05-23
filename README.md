@@ -3,10 +3,10 @@
 **E-commerce Development Project in Node.js**
 
 ## Tecnologie utilizzate
-- JavaScript was used as the primary language for e-commerce development.
-- TypeScript offers better code maintainability by implementing static typing, allowing type errors to be caught.
-- Express.js is a web framework for Node.js that simplifies web application and API development through its routing system, middleware, and error handling.
-- MongoDB is a flexible and scalable NoSQL document-oriented database that offers a dynamic data structure and powerful query capabilities.
+- `Javascript` was used as the primary language for e-commerce development.
+- `Typescript` offers better code maintainability by implementing static typing, allowing type errors to be caught.
+- `Express.js` is a web framework for Node.js that simplifies web application and API development through its routing system, middleware, and error handling.
+- `MongoDB` is a flexible and scalable NoSQL document-oriented database that offers a dynamic data structure and powerful query capabilities.
 
 The combination of JavaScript, TypeScript, Express.js, and MongoDB provides a complete solution; it allows for a performant, scalable, and easily modifiable application.
 
