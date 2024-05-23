@@ -1,7 +1,12 @@
 import { Schema, Document } from "mongoose";
-import { IProduct } from "./product.type";
-export interface ICart extends Document {
+import { ILineCart } from "../types/lineCart.type";
+
+
+export interface ICart extends Document{
     user: Schema.Types.ObjectId;
-    products: Array<IProduct>;
+    lineCart:  ILineCart[];
+    totalPrice: Number
 }
 
+
+    

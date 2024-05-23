@@ -9,7 +9,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5M
 ###
 // create new order by cart
 POST http://localhost:3000/api/orders
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTE4NDMsImV4cCI6MTcxNTQzODI0M30.Io4b8jsnhD40UVYp2iGStfpsVuU0JN0q3uQ5FRAQykA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZjJiMzVhMzlhODE2YTYzNjA5YiIsImVtYWlsIjoiZmFiaW8ucm9zc2lAZ21haWwuaXQiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTM1OTYyNSwiZXhwIjoxNzE1NDQ2MDI1fQ.CEUcjz4pny6EgN9VqGm2dCtf5eXWvxt230ymI0pddEM
 Content-Type: application/json
 
 {
@@ -24,12 +24,12 @@ Content-Type: application/json
 
 // show order by specific id
 ###
-GET http://localhost:3000/api/orders/663e4af1aac787c4026c1d65
+GET http://localhost:3000/api/orders/663e4f2b35a39a816a63609b
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTE4NDMsImV4cCI6MTcxNTQzODI0M30.Io4b8jsnhD40UVYp2iGStfpsVuU0JN0q3uQ5FRAQykA
 
 // update status order by id (only ADMIN)
 ###
-PUT http://localhost:3000/api/orders/663e4af1aac787c4026c1d65
+PUT http://localhost:3000/api/orders/663e4f2b35a39a816a63609b
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc2MmU5Mzc5NDJmNWE4ZTJjMTNkZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNTE4NDMsImV4cCI6MTcxNTQzODI0M30.Io4b8jsnhD40UVYp2iGStfpsVuU0JN0q3uQ5FRAQykA
 Content-Type: application/json
 

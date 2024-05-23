@@ -1,22 +1,20 @@
-import mongoose from 'mongoose';
-import { ICart } from '../types/cart.type';
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
+import { ICart } from "../types/cart.type";
+import { lineCartSchema } from "./lineCart.model";
 
-const cartSchema = new mongoose.Schema<ICart>(
-    {
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
+
+export const cartSchema = new mongoose.Schema<ICart>({
+    user: { type: Schema.Types.ObjectId },
+    lineCart: [
+        {
+            type: lineCartSchema,
+            ref: "LineCart",
         },
-        products: [{ 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Product', 
-            required: true,
-        }],
-    },
-    { timestamps: true }
-);
+    ],
+    totalPrice: {
+        type: Number,
+    }
+}, { timestamps: true });
 
-const Cart = mongoose.model<ICart>('Cart', cartSchema);
-
-export default Cart;
+export const Cart = mongoose.model<ICart>("Cart", cartSchema);

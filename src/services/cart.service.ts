@@ -1,7 +1,8 @@
-import Cart from '../models/cart.models';
+import { Cart } from '../models/cart.models';
 import { ICart } from '../types/cart.type';
 import { Product } from '../models/product.models';
 import { IProduct } from '../types/product.type';
+import { ILineCart } from '../types/lineCart.type';
 
 
 export const getCart = async (userId: string): Promise<ICart | null> => {
@@ -10,52 +11,59 @@ export const getCart = async (userId: string): Promise<ICart | null> => {
 
 export const getOrcreateCart = async (userId: string): Promise<ICart> => {
     let cart = await Cart.findOne({ user: userId });
-    if(!cart){
+    if (!cart) {
         cart = await Cart.create({ user: userId, products: [] });
     }
     return cart
 }
 
-export const findProductToCart = async (id: string): Promise<ICart | null> => {
-	return await Cart.findOne({ products: id });
+/* export const updateCart = async (cartData: ICart): Promise<ICart | null> => {
+    return await Cart.findOneAndUpdate(cartData);
+}; */
+
+//! funzionante ma nel db non vedo le chi prodotti
+export const findProductToCart = async (cart: ICart, prodId: string): Promise<ILineCart | null> => {
+    const product = cart.lineCart.find(item => item.productId === prodId);
+    return product ? product : null;
 };
+
+
 export const addProductToCart = async (
     userId: string,
-    product: IProduct
+    product: IProduct,
+    productQuantity: number
 ): Promise<ICart | null> => {
     let cart = await getOrcreateCart(userId);
-    cart.products.push(product);
+    const populatedProduct = await Product.findById(product._id);
+    if (!populatedProduct) {
+        console.error(`Prodotto non trovato con ID ${product._id}`);
+        return null;
+    }
+    cart.lineCart.push({
+        productId: populatedProduct._id,
+        quantity: productQuantity,
+        price: populatedProduct.price,
+        subtotal: productQuantity * populatedProduct.price
+    });
+    cart.totalPrice = cart.lineCart.reduce((total, item) => total + item.subtotal.valueOf(), 0);
     await cart.save();
-
     return cart;
-};
+}
 
-export const removeProductToCart = async (
-    userId: string,
-    productId: string
-): Promise<ICart | null> => {
-    let cart = await getCart(userId);
-    cart!.products.pull(productId); //TODO risolvi errore da IProduct
-    await cart!.save();
+// delete all products by one id in cart
+export const removeProductToCart = async (cart: ICart, product: ILineCart): Promise<ICart | null> => {
+    cart.lineCart = cart.lineCart.filter(
+        (lineItem) => lineItem.productId !== product.productId
+    );
+    await cart.save();
     return cart;
-};
+}
+
 
 export const clearCart = async (
     userId: string,
 ): Promise<ICart | null> => {
-    try {
-        let userCart = await Cart.findOne({ user: userId });
-        if (!userCart) {
-            throw new Error("Carrello non trovato");
-        }
+    return await Cart.findOneAndDelete({ user: userId });
+}
 
-        userCart.products = [];
 
-        await userCart.save();
-
-        return userCart;
-    } catch (error) {
-        console.error("Errore durante la rimozione dei prodotti all'interno del carrello:", error);
-        return null;
-    }
-};

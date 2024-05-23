@@ -12,27 +12,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmM
 Content-Type: application/json
 
 {
-    "name": "Smartphone",
-    "brand": "ABC Electronics",
-    "quantity": 100,
-    "price": 599.99,
-    "sale": 0.2
+    "name": "Laptop",
+    "brand": "XYZ Tech",
+    "quantity": 50,
+    "price": 1299.99,
+    "sale": 0.1
 }
 
 
 ###
 // get product by id
-GET http://localhost:3000/api/products/addProductController
+GET http://localhost:3000/api/products/663e54b97f30e5ddf566a115
 
 
 // delete producut by id (admin)
 ###
-DELETE  http://localhost:3000/api/products/663e54b97f30e5ddf566a115
+DELETE  http://localhost:3000/api/products/663e6514b5b9948d800abd53
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNjA5MzQsImV4cCI6MTcxNTQ0NzMzNH0.YpdZwY_3Xs2PYHeKiIFMEiI1-GZQ1ngYuaMry02t0yg
 
 // updrade product by id (admin)
 ###
-PUT http://localhost:3000/api/products/663e54b97f30e5ddf566a115
+PUT http://localhost:3000/api/products/663e6514b5b9948d800abd53
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2U0ZTVmMzVhMzlhODE2YTYzNjA4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uaXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzNjA5MzQsImV4cCI6MTcxNTQ0NzMzNH0.YpdZwY_3Xs2PYHeKiIFMEiI1-GZQ1ngYuaMry02t0yg
 Content-Type: application/json
 

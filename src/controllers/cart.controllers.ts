@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import {
 	getCart,
 	addProductToCart,
-	removeProductToCart,
 	clearCart,
 	getOrcreateCart,
-	findProductToCart
+	findProductToCart,
+	removeProductToCart
 } from '../services/cart.service';
 import { ExtendedRequest } from '../middlewares/user.auth';
 import { showProduct } from '../services/product.services';
@@ -31,24 +31,35 @@ export const addProductToCartController = async (
 ) => {
 	const productId = req.params.id;
 	const userId = req.user?._id as string;
+	const quantity = req.body.quantity; // recupero la quantità dal body
 	try {
 		if (productId.length !== 24) {
 			return res.status(404).json({
 				message: "Product id is not valid",
-			})
-		};
-		const idProductDb = await showProduct(productId);
-		if (!idProductDb) {
+			});
+		}
+		const productDb = await showProduct(productId);
+		if (!productDb) {
 			return res.status(404).json({
 				message: "Product id not found in the database",
 			});
 		}
-		const cart = await addProductToCart(userId, idProductDb!);
+		if(quantity < 1) {
+			return res.status(404).json({
+				message: "Quantity is not valid",
+			});
+		}
+// TODO controllo quantità dallo stock
+// TODO riduci quantità dallo stock se l'ordine viene venduto
+
+		// Pass quantity to addProductToCart function
+		const cart = await addProductToCart(userId, productDb!, quantity);
 		res.status(200).json({ success: true, data: cart });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
-			success: false, error: 'Server error while handling cart request'
+			success: false,
+			error: 'Server error while handling cart request',
 		});
 	}
 };
@@ -61,24 +72,27 @@ export const removeProductCartController = async (
 	const userId = req.user?._id as string;
 	const productId = req.params.id;
 	try {
+		const cart = await getCart(userId);
+		if (!cart) {
+			return res.status(404).json({ success: false, error: 'User cart not found' });
+		}
+		console.log("cartId: " + cart._id)
 		if (productId.length !== 24) {
 			return res.status(404).json({
 				message: "Product id is not valid",
 			})
 		}
-		const productInCart = await findProductToCart(productId);
+		const productInCart = await findProductToCart(cart, productId);
+		console.log("product in lineCart: " + productInCart)
 		if (!productInCart) {
 			return res.status(404).json({
 				message: "Product id not found in the cart",
 			});
 		}
 
-		const cart = await getCart(userId);
-		if (!cart) {
-			return res.status(404).json({ success: false, error: 'User cart not found' });
-		}
-		const deletedProduct = await removeProductToCart(userId, productId);
-		res.status(200).json({ success: true, data: deletedProduct }); // TODO inserisci carrello aggiornato
+		
+		const deletedProduct = await removeProductToCart(cart, productInCart);
+		res.status(200).json({ success: true, message: "product deleted" }); // TODO inserisci carrello aggiornato
 	} catch (error) {
 		res.status(500).json({
 			success: false,
@@ -89,19 +103,20 @@ export const removeProductCartController = async (
 
 // clear cart
 export const clearCartController = async (req: ExtendedRequest, res: Response) => {
-	const userId = req.user?._id as string;
+    const userId = req.user?._id as string;
 
-	try {
-		const cart = await getOrcreateCart(userId);
-		if(cart.products.length === 0) {
-			res.status(404).json({ message: 'Cart is empty' });
-		}
-		const emptyCart = await clearCart(userId);
-		res.status(200).json({ message: "cart cleared", data: emptyCart });
-	} catch (error) {
-		res.status(500).json({
-			success: false,
-			error: 'Error while removing cart',
-		});
-	}
+    try {
+        const cart = await getCart(userId);
+        if (!cart || cart.lineCart.length === 0) {
+            return res.status(404).json({ message: 'Cart is empty' });
+        }
+
+        const emptyCart = await clearCart(userId);
+        res.status(200).json({ message: "Cart cleared" });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: 'Error while removing cart',
+        });
+    }
 };
