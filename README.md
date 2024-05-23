@@ -1,84 +1,80 @@
-# Project Work finale - PROGETTO CODE
+# Final Project Work  - PROGETTO CODE
 
-**Progetto di realizzazione di un e-commerce in Node.js**
-
-realizzato da: [Fabio Vallacqua](https://github.com/Gowater20)
+**E-commerce Development Project in Node.js**
 
 ## Tecnologie utilizzate
- - `Javascript ` è stato utilizzato come linguaggio principale per lo sviluppo dell'e-commerce
- - `Typescript ` offre una maggiore manutenibilità del codice poiché implementa la tipizzazione statica consentendo di catturare errori di tipo
- - `Express.js ` è un framework web per Node.js che semplifica lo sviluppo di applicazioni web e API attraverso il suo sistema di routing
-    middleware e gestione degli errori
- - `MongoDB ` è un database NoSQL flessibile e scalabile, orientato ai documenti, che offre una struttura dati dinamica e potenti capacità di
-    query
+- `Javascript` was used as the primary language for e-commerce development.
+- `Typescript` offers better code maintainability by implementing static typing, allowing type errors to be caught.
+- `Express.js` is a web framework for Node.js that simplifies web application and API development through its routing system, middleware, and error handling.
+- `MongoDB` is a flexible and scalable NoSQL document-oriented database that offers a dynamic data structure and powerful query capabilities.
 
-La combinazione JavaScript, TypeScript, Express.js e MongoDB offre una soluzione completa;
-consente di avere un'applicazione performante, scalabile e facile da modificare
+The combination of JavaScript, TypeScript, Express.js, and MongoDB provides a complete solution; it allows for a performant, scalable, and easily modifiable application.
 
-## Setup Iniziale:
+## Initial Setup
 
-Apri un terminale nella directory del tuo progetto ed esegui il seguente comando:
+Open a terminal in your project directory and run the following command:
 
     npm install
 
-Questo, scaricherà e installerà tutte le dipendenze necessarie elencate nel file package.json.
+This will download and install all the necessary dependencies listed in the package.json file.
 
+## Transpilation (Run just one time):
 
-## Avvio del Server:
+This step compiles TypeScript code into JavaScript. It is only required the first time you set up the project.
 
-Per avviare il server è necessario usare il singolo comando:
+    npm run tsc
+
+## Starting the Server
+
+To start the server, use the single command:
 
     npm start
 
-Il comando, compila il doce TypeScript e avvia il server utilizzando Nodemon. Quest'ultimo controllerà automaticamente le modifiche dei file TypeScript e riavvierà il server ogni volta che vengono apportate modifiche ottimizzando e snellendo lo sviluppo.
+The command compiles the TypeScript code and starts the server using Nodemon. 
+Nodemon will automatically monitor TypeScript file changes and restart the server whenever modifications are made, optimizing and streamlining development.
 
-## testing dell' API
+## API Testing
 
-Per testare le chiamate API, si consiglia di installare l'estensione REST Client di visual studio code, o altro IDE (ambiente di sviluppo integrato),  in modo da inviare le richieste HTTP direttamente dall'editor e visualizzare le risposte in modo chiaro e interattivo. Questa estensione è utile per testare API RESTful e altri servizi HTTP senza dover utilizzare un'applicazione esterna o un browser.
-Il file di test delle richieste HTTP è nominato:
+To test API calls, it is recommended to install the REST Client extension for Visual Studio Code or another IDE, allowing you to send HTTP requests directly from the editor and view the responses clearly and interactively. This extension is useful for testing RESTful APIs and other HTTP services without needing an external application or browser.
+The test file for HTTP requests is named:
 
-    TestAPI
+    API_testing
 
-## Funzionalita' implementate
-### UTENTI
-Creazione e registrazione profilo utente
-Campi richiesti: nome, cognome, email e password
+## Implemented Features
+### USERS
+Create and register a user profile
+Required fields: first name, last name, email, and password
 
-*APIautenticazione (authApi)* viene assegnato un "role" per la gestione delle autorizzazioni
-del profilo, utilizziamo un sistema di autenticazione per garantire gli utenti
-registrati possano accedere ad alcune funzionalità.
+*Auth API (authApi) assigns a "role" for profile authorization management. We use an authentication system to ensure registered users can access certain features.
 
-### PRODOTTI
-Poter aggiungere, modificare, eliminare un prodotto
-Campi richiesti: nome, marchio, prezzo
+### PRODUCTS
+Add, modify, delete a product
+Required fields: name, brand, price
 
-*APIprodotto (productApi)* è possibile visualizzare tutti i prodotti con un GETALL, gli utenti admin
-possono aggiungere, modificare le informazioni ed eliminare un nuovo prodotto
+Product API (productApi) allows viewing all products with a get all products. Admin users can add, modify, and delete a product.
 
-### ORDINI
-Per la creazione, aggiornamento, eliminazione di un ordine
-Campi richiesti: dati utente (nome, cognome, email, password)
+### CART
+Add, remove, empty the cart
 
-*APIordini (orderApi)*
-funzionalità utenti admin: aggiornamento dello stato dell'ordine esistente e cancellare l'ordine
-funzionalità utenti: visualizzare lo storico ordini, creazione di un nuovo ordine
+Cart API (cartApi) returns details of each purchased product. You can add, modify, and delete a product.
 
-### CARRELLO
-Consente di aggiungere, rimuove, svuotare il carrello
+### ORDERS
+Create, update, delete an order
+Required fields: user data (first name, last name, email, password)
 
-*APIcarrello (cartApi)* restituisce i dettagli di ogni prodotto acquistato, si può aggiungere, modificare ed eliminare un prodotto
+Order API (orderApi)
+Admin users' functionalities: update the status of an existing order and delete an order.
+User functionalities: view order history, create a new order.
 
-# FRUIBILITA'
-- Il file .env per gestire le variabili d'ambiente utilizzate in questo progetto;
-- La cartella Test Api consente di effettuare un test delle *rotte*, sopra elencate, presenti nel progetto
+# USABILITY
+- The .env file is used to manage environment variables in this project.
+- The Test Api folder allows testing the routes listed above present in the project.
 
-# Funzionalità mancanti all'ultima modifica
-- Gestione utenti
-    - [ ] Registrazione admin
-    - [ ] Gestione utente loggato
-- Gestione carrello
-    - [ ] Recuperare id utente dal JWT token in tutte le rotte
+# Missing Features at Last Update
+- Cart Management
+    - [ ] Calculation of the total cost of the cart
 - Gestioni ordini
-    - [ ] Creazione dell'ordine
-    - [ ] Recupero di un ordine tramite id
-    - [ ] Aggiornamento dello stato dell'ordine
+    - [ ] Calculation of the total cost of the order
+ 
+
+Created by: Fabio Vallacqua
