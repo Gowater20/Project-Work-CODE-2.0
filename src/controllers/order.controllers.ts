@@ -150,7 +150,7 @@ export const removeOrderController = async (req: ExtendedRequest, res: Response)
 			return res.status(404).json({ success: false, error: 'Order not found' });
 		}
 		if (order.status !== 'cancelled') {
-			res.status(404).json({ success: false, error: 'Order not cancelled because the status is not cancelled' });
+			return res.status(404).json({ success: false, error: 'Order not cancelled because the status is not cancelled' });
 		}
 		await deleteOrder(order._id!);
 		res.status(200).json({ success: `Order: ${orderId} has been deleted`});
