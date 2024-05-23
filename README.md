@@ -76,4 +76,5 @@ User functionalities: view order history, create a new order.
 - Gestioni ordini
     - [ ] Calculation of the total cost of the order
  
-                                                                                                                                                                  Created by: Fabio Vallacqua
+
+Created by: Fabio Vallacqua
